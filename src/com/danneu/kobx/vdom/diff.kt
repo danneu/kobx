@@ -27,7 +27,6 @@ fun changed (new: VTree, old: VTree): Boolean = when {
 }
 
 
-// domParent must be an element since it has children
 fun patch(domParent: Node, newNode: VTree?, oldNode: VTree? = null, index: Int = 0): Node {
     return when {
         oldNode == null -> {
