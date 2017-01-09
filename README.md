@@ -1,32 +1,23 @@
 
 # kobx
 
-A toy virtual dom + a toy react implementation + mobx bindings,
-written in kotlin.
-
-An effort to play with kotlin-to-javascript compilation.
-
-----
-
-It started off as mobx bindings, but then I needed to
-yak-shave some react bindings, which was tough for me
-to figure out without much kotlin-to-javascript documentation,
-so the only choice I had left was to start yak-shaving
-a virtual-dom, altogether damning the future of this
-repository.
-
-But I made about 0.1% progress on each of those goals.
+Experimental mobx + react bindings for kotlin-javascript.
 
 ## Example
 
+(Note: More thorough example exists in `main.kt`)
+
 Displays a clock component that updates the time
-every second, triggering a ui re-render each time.
+every second, triggering a component re-render each time.
+
+Clicking the time also updates the store.
 
 ``` kotlin
 import com.danneu.kobx.mobx.Observable
 import com.danneu.kobx.mobx.action
-import com.danneu.kobx.ui.Component
-import com.danneu.kobx.ui.mount
+import com.danneu.kobx.react.Component
+import com.danneu.kobx.react.ReactDOM
+import com.danneu.kobx.react.ReactElement
 import kotlin.browser.document
 import kotlin.browser.window
 
@@ -37,11 +28,11 @@ import kotlin.browser.window
 
 class Store : Observable {
     // Observable property
-    var time: Date = Date()
+    var now = Date()
     
     // Computed property
     val millisSinceEpoch: Int 
-        get() = time.getTime()
+        get() = now.getTime()
         
     // Stupid hack to generate the mobx boilerplate.
     // Must come after the properties are defined.
@@ -52,22 +43,25 @@ val store = Store()
 
 // === ROOT COMPONENT
 
-// By dereferencing `store.time` in render(), render()
-// now observes the time.
 
-class Clock : Component {
-    override fun render(): VTree {
-        val time = store.time
-        return node("span") {
-            text(time.toString())
+class Clock : Component() {
+    // Upgrade component into observer which is what
+    // hooks render() dereferences up to the store
+    init { observer(this) }
+    
+    // By dereferencing `store.now` in render(), render()
+    // observes the time and will re-render when `store.now` changes.
+    override fun render(): ReactElement {
+        return d("span", mapOf("onClick" to action { store.now = Date() })) {
+            text(store.now.toString())
         }
     }
 }
 
 fun main(args: Array<String>) {
     val clock = Clock()
-    window.setInterval(action({ store.time = Date() }), 1000)
-    mount(clock, document.body!!)
+    window.setInterval(action({ store.now = Date() }), 1000)
+    ReactDOM.render(React.createElement(Clock::class.js), document.querySelector("#root")!!)
 }
 ```
 

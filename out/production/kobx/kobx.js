@@ -1,31 +1,602 @@
+if (typeof kotlin === 'undefined') {
+  throw new Error("Error loading module 'kobx'. Its dependency 'kotlin' was not found. Please, check whether 'kotlin' is loaded prior to 'kobx'.");
+}
 var kobx = function (_, Kotlin) {
   'use strict';
-  var imported$clear = Kotlin.kotlin.dom.clear_asww5t$;
-  var imported$Continuation = Kotlin.kotlin.coroutines.Continuation;
-  var imported$apply = Kotlin.kotlin.apply_ji1yox$;
-  var imported$Regex = Kotlin.kotlin.text.Regex_61zpoe$;
-  var imported$drop = Kotlin.kotlin.text.drop_n7iutu$;
-  var imported$until = Kotlin.kotlin.ranges.until_rksjo2$;
-  var imported$getOrNull = Kotlin.kotlin.collections.getOrNull_3iu80n$;
-  var imported$kotlin = Kotlin.kotlin;
-  var imported$emptyMap = Kotlin.kotlin.collections.emptyMap;
-  var imported$plus = Kotlin.kotlin.collections.plus_y1w8a6$;
-  var imported$forEach = Kotlin.kotlin.collections.forEach_lcecrh$;
-  var imported$isNotEmpty = Kotlin.kotlin.collections.isNotEmpty_efxzmg$;
-  var imported$isNotEmpty_0 = Kotlin.kotlin.collections.isNotEmpty_mwto7b$;
-  var imported$map = Kotlin.kotlin.collections.map_fcza0h$;
-  var imported$filter = Kotlin.kotlin.collections.filter_udlcbx$;
-  var imported$Map$Entry = Kotlin.kotlin.collections.Map.Entry;
-  var imported$filterIsInstance = Kotlin.kotlin.collections.filterIsInstance_q5oq31$;
-  var imported$component1 = Kotlin.kotlin.collections.component1_95c3g$;
-  var imported$component2 = Kotlin.kotlin.collections.component2_95c3g$;
-  var imported$HashMap_init = Kotlin.kotlin.collections.HashMap_init_r12sna$;
-  var imported$toMutableList = Kotlin.kotlin.collections.toMutableList_mwto7b$;
-  var imported$mutableListOf = Kotlin.kotlin.collections.mutableListOf_9mqe4v$;
-  VTree$VNode.prototype = Object.create(VTree.prototype);
-  VTree$VNode.prototype.constructor = VTree$VNode;
-  VTree$VText.prototype = Object.create(VTree.prototype);
-  VTree$VText.prototype.constructor = VTree$VText;
+  var Enum = Kotlin.kotlin.Enum;
+  var toMutableList = Kotlin.kotlin.collections.toMutableList_eg9ybj$;
+  var to = Kotlin.kotlin.to_l1ob02$;
+  var mapOf = Kotlin.kotlin.collections.mapOf_dvvt93$;
+  var mapOf_0 = Kotlin.kotlin.collections.mapOf_eoa9s7$;
+  var listOf = Kotlin.kotlin.collections.listOf_9mqe4v$;
+  var get_js = Kotlin.kotlin.js.get_js_t5ir34$;
+  var listOf_0 = Kotlin.kotlin.collections.listOf_za3rmp$;
+  var Map = Kotlin.kotlin.collections.Map;
+  Cursor.prototype = Object.create(Enum.prototype);
+  Cursor.prototype.constructor = Cursor;
+  BackgroundPicker.prototype = Object.create(React.Component.prototype);
+  BackgroundPicker.prototype.constructor = BackgroundPicker;
+  Clock.prototype = Object.create(React.Component.prototype);
+  Clock.prototype.constructor = Clock;
+  TabName.prototype = Object.create(Enum.prototype);
+  TabName.prototype.constructor = TabName;
+  TabA.prototype = Object.create(React.Component.prototype);
+  TabA.prototype.constructor = TabA;
+  TabB.prototype = Object.create(React.Component.prototype);
+  TabB.prototype.constructor = TabB;
+  TabC.prototype = Object.create(React.Component.prototype);
+  TabC.prototype.constructor = TabC;
+  Tabs.prototype = Object.create(React.Component.prototype);
+  Tabs.prototype.constructor = Tabs;
+  Counter.prototype = Object.create(React.Component.prototype);
+  Counter.prototype.constructor = Counter;
+  CounterList.prototype = Object.create(React.Component.prototype);
+  CounterList.prototype.constructor = CounterList;
+  App.prototype = Object.create(React.Component.prototype);
+  App.prototype.constructor = App;
+  function Cursor(name, ordinal) {
+    Enum.call(this);
+    this.name$ = name;
+    this.ordinal$ = ordinal;
+  }
+  function Cursor_initFields() {
+    Cursor_initFields = function () {
+    };
+    Cursor$auto_instance = new Cursor('auto', 0);
+    Cursor$default_instance = new Cursor('default', 1);
+    Cursor$none_instance = new Cursor('none', 2);
+    Cursor$pointer_instance = new Cursor('pointer', 3);
+  }
+  var Cursor$auto_instance;
+  function Cursor$auto_getInstance() {
+    Cursor_initFields();
+    return Cursor$auto_instance;
+  }
+  var Cursor$default_instance;
+  function Cursor$default_getInstance() {
+    Cursor_initFields();
+    return Cursor$default_instance;
+  }
+  var Cursor$none_instance;
+  function Cursor$none_getInstance() {
+    Cursor_initFields();
+    return Cursor$none_instance;
+  }
+  var Cursor$pointer_instance;
+  function Cursor$pointer_getInstance() {
+    Cursor_initFields();
+    return Cursor$pointer_instance;
+  }
+  Cursor.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Cursor',
+    baseClasses: [Enum]
+  };
+  function Cursor$values() {
+    return [Cursor$auto_getInstance(), Cursor$default_getInstance(), Cursor$none_getInstance(), Cursor$pointer_getInstance()];
+  }
+  Cursor.values = Cursor$values;
+  function Cursor$valueOf(name) {
+    switch (name) {
+      case 'auto':
+        return Cursor$auto_getInstance();
+      case 'default':
+        return Cursor$default_getInstance();
+      case 'none':
+        return Cursor$none_getInstance();
+      case 'pointer':
+        return Cursor$pointer_getInstance();
+      default:Kotlin.throwISE('No enum constant com.danneu.kobx.Cursor.' + name);
+    }
+  }
+  Cursor.valueOf_61zpoe$ = Cursor$valueOf;
+  function Css(backgroundColor, border, color, cursor, width, height) {
+    if (backgroundColor === void 0)
+      backgroundColor = null;
+    if (border === void 0)
+      border = null;
+    if (color === void 0)
+      color = null;
+    if (cursor === void 0)
+      cursor = null;
+    if (width === void 0)
+      width = null;
+    if (height === void 0)
+      height = null;
+    this.backgroundColor = backgroundColor;
+    this.border = border;
+    this.color = color;
+    this.cursor = cursor;
+    this.width = width;
+    this.height = height;
+  }
+  Css.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Css',
+    baseClasses: []
+  };
+  function D(a, b, c) {
+    if (b === void 0)
+      b = null;
+    this.a = a;
+    this.b = b;
+    this.kids = toMutableList(c);
+  }
+  function D$d$lambda() {
+  }
+  D.prototype.d_kj89xv$ = function (tag, attrs, block) {
+    var tmp$;
+    if (attrs === void 0)
+      attrs = null;
+    if (block === void 0)
+      block = D$d$lambda;
+    var kid = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    block.call(kid);
+    var tmp$_0 = this.kids;
+    var tmp$_1 = (tmp$ = React).createElement;
+    var tmp$_2 = tmp$;
+    var tmp$_3 = [kid.a, kid.b];
+    var tmp$_4 = tmp$_3.concat.bind(tmp$_3);
+    var $receiver = kid.kids;
+    tmp$_0.add_za3rmp$(tmp$_1.apply(tmp$_2, tmp$_4(Kotlin.kotlin.collections.copyToArray($receiver))));
+  };
+  D.prototype.d_16rng9$ = function (tag, attrs, subkids) {
+    var tmp$;
+    if (attrs === void 0)
+      attrs = null;
+    this.kids.add_za3rmp$((tmp$ = React).createElement.apply(tmp$, [tag, attrs != null ? toJsObject(attrs) : null].concat(subkids)));
+  };
+  D.prototype.d_nxr5h6$ = function (jsclass) {
+    this.kids.add_za3rmp$(React.createElement(jsclass));
+  };
+  D.prototype.d_3d1yi4$ = function (el) {
+    this.kids.add_za3rmp$(el);
+  };
+  D.prototype.ds_727x2e$ = function (list) {
+    this.kids.add_za3rmp$(Kotlin.kotlin.collections.copyToArray(list));
+  };
+  D.prototype.text_61zpoe$ = function (string) {
+    this.kids.add_za3rmp$(string);
+  };
+  D.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'D',
+    baseClasses: []
+  };
+  function d$lambda() {
+  }
+  function d(tag, attrs, block) {
+    var tmp$;
+    if (attrs === void 0)
+      attrs = null;
+    if (block === void 0)
+      block = d$lambda;
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    block.call(root);
+    var tmp$_0 = (tmp$ = React).createElement;
+    var tmp$_1 = tmp$;
+    var tmp$_2 = [root.a, root.b];
+    var tmp$_3 = tmp$_2.concat.bind(tmp$_2);
+    var $receiver = root.kids;
+    return tmp$_0.apply(tmp$_1, tmp$_3(Kotlin.kotlin.collections.copyToArray($receiver)));
+  }
+  function d_0(tag, attrs, text) {
+    if (attrs === void 0)
+      attrs = null;
+    if (text === void 0)
+      text = '';
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    return React.createElement(root.a, root.b, [text]);
+  }
+  function Store() {
+    this.backgroundColor = 'white';
+    this.now = new Date();
+    this.activate();
+  }
+  Object.defineProperty(Store.prototype, 'millisSinceEpoch', {
+    get: function () {
+      return this.now.getTime();
+    }
+  });
+  Store.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Store',
+    baseClasses: [Observable]
+  };
+  var store;
+  function BackgroundPicker() {
+    BackgroundPicker$Companion_getInstance();
+    React.Component.call(this);
+    mobxReact.observer(this);
+  }
+  function BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color) {
+    return function () {
+      store.backgroundColor = closure$color;
+    };
+  }
+  function BackgroundPicker$render$lambda$lambda$lambda$lambda(closure$isSelected, closure$color) {
+    return function () {
+      if (closure$isSelected) {
+        this.d_kj89xv$('span', mapOf(to('dangerouslySetInnerHTML', mapOf(to('__html', '&rarr; ')))));
+      }
+      var tmp$ = this.d_16rng9$.bind(this);
+      var $receiver = new Css(closure$color, void 0, void 0, Cursor$pointer_getInstance());
+      if (closure$isSelected) {
+        $receiver.border = 0;
+        $receiver.backgroundColor = 'inherit';
+        $receiver.color = 'black';
+      }
+      tmp$('button', mapOf_0([to('style', $receiver), to('onClick', mobx.action(BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color))), to('disabled', closure$isSelected)]), [closure$color]);
+    };
+  }
+  function BackgroundPicker$render$lambda$lambda() {
+    var tmp$;
+    tmp$ = BackgroundPicker$Companion_getInstance().colors.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      var isSelected = Kotlin.equals(store.backgroundColor, element);
+      this.d_kj89xv$('li', void 0, BackgroundPicker$render$lambda$lambda$lambda$lambda(isSelected, element));
+    }
+  }
+  function BackgroundPicker$render$lambda() {
+    this.d_kj89xv$('ul', void 0, BackgroundPicker$render$lambda$lambda);
+  }
+  BackgroundPicker.prototype.render = function () {
+    Kotlin.println('render');
+    return d('div', void 0, BackgroundPicker$render$lambda);
+  };
+  function BackgroundPicker$Companion() {
+    BackgroundPicker$Companion_instance = this;
+    this.colors = listOf(['red', 'orange', 'yellow', 'green', 'blue', 'violet', 'white']);
+  }
+  BackgroundPicker$Companion.$metadata$ = {
+    type: Kotlin.TYPE.OBJECT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Companion',
+    baseClasses: []
+  };
+  var BackgroundPicker$Companion_instance = null;
+  function BackgroundPicker$Companion_getInstance() {
+    if (BackgroundPicker$Companion_instance === null) {
+      BackgroundPicker$Companion_instance = new BackgroundPicker$Companion();
+    }
+    return BackgroundPicker$Companion_instance;
+  }
+  BackgroundPicker.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'BackgroundPicker',
+    baseClasses: []
+  };
+  function Clock() {
+    React.Component.call(this);
+    mobxReact.observer(this);
+  }
+  function Clock$render$lambda$lambda() {
+    store.now = new Date();
+  }
+  function Clock$render$lambda(closure$now) {
+    return function () {
+      this.d_16rng9$('p', null, ['Since epoch: ' + store.millisSinceEpoch]);
+      this.d_16rng9$('p', mapOf(to('onClick', mobx.action(Clock$render$lambda$lambda))), ['time is ' + closure$now]);
+    };
+  }
+  Clock.prototype.render = function () {
+    var now = store.now;
+    return d('div', void 0, Clock$render$lambda(now));
+  };
+  Clock.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Clock',
+    baseClasses: []
+  };
+  function TabName(name, ordinal, prettyName) {
+    Enum.call(this);
+    this.prettyName = prettyName;
+    this.name$ = name;
+    this.ordinal$ = ordinal;
+  }
+  function TabName_initFields() {
+    TabName_initFields = function () {
+    };
+    TabName$TabA_instance = new TabName('TabA', 0, 'Tab A');
+    TabName$TabB_instance = new TabName('TabB', 1, 'Tab B');
+    TabName$TabC_instance = new TabName('TabC', 2, 'Tab C');
+  }
+  var TabName$TabA_instance;
+  function TabName$TabA_getInstance() {
+    TabName_initFields();
+    return TabName$TabA_instance;
+  }
+  var TabName$TabB_instance;
+  function TabName$TabB_getInstance() {
+    TabName_initFields();
+    return TabName$TabB_instance;
+  }
+  var TabName$TabC_instance;
+  function TabName$TabC_getInstance() {
+    TabName_initFields();
+    return TabName$TabC_instance;
+  }
+  TabName.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'TabName',
+    baseClasses: [Enum]
+  };
+  function TabName$values() {
+    return [TabName$TabA_getInstance(), TabName$TabB_getInstance(), TabName$TabC_getInstance()];
+  }
+  TabName.values = TabName$values;
+  function TabName$valueOf(name) {
+    switch (name) {
+      case 'TabA':
+        return TabName$TabA_getInstance();
+      case 'TabB':
+        return TabName$TabB_getInstance();
+      case 'TabC':
+        return TabName$TabC_getInstance();
+      default:Kotlin.throwISE('No enum constant com.danneu.kobx.TabName.' + name);
+    }
+  }
+  TabName.valueOf_61zpoe$ = TabName$valueOf;
+  function TabA() {
+    React.Component.call(this);
+  }
+  TabA.prototype.render = function () {
+    return d_0('div', null, 'TabA Component');
+  };
+  TabA.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'TabA',
+    baseClasses: []
+  };
+  function TabB() {
+    React.Component.call(this);
+  }
+  TabB.prototype.render = function () {
+    return d_0('div', null, 'TabB Component');
+  };
+  TabB.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'TabB',
+    baseClasses: []
+  };
+  function TabC() {
+    React.Component.call(this);
+  }
+  TabC.prototype.render = function () {
+    return d_0('div', null, 'TabC Component');
+  };
+  TabC.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'TabC',
+    baseClasses: []
+  };
+  function Tabs() {
+    React.Component.call(this);
+    mobxReact.observer(this);
+    this.selectedTab = mobx.observable(TabName$TabA_getInstance());
+  }
+  function Tabs$renderTab$lambda(closure$tab, closure$isSelected) {
+    return function () {
+      this.text_61zpoe$(closure$tab.prettyName);
+      if (closure$isSelected) {
+        this.text_61zpoe$(' (Selected)');
+      }
+    };
+  }
+  Tabs.prototype.renderTab_3cf6xz$ = function (tab, isSelected) {
+    return d('div', void 0, Tabs$renderTab$lambda(tab, isSelected));
+  };
+  function Tabs$render$lambda$lambda$lambda$lambda(this$Tabs, closure$tab) {
+    return function () {
+      this$Tabs.selectedTab.set(closure$tab);
+    };
+  }
+  function Tabs$render$lambda$lambda$lambda$lambda_0(closure$tab, this$Tabs) {
+    return function () {
+      this.d_3d1yi4$(this$Tabs.renderTab_3cf6xz$(closure$tab, closure$tab === this$Tabs.selectedTab.get()));
+    };
+  }
+  function Tabs$render$lambda$lambda(this$Tabs) {
+    return function () {
+      var $receiver = TabName$values();
+      var tmp$;
+      for (tmp$ = 0; tmp$ !== $receiver.length; ++tmp$) {
+        var element = $receiver[tmp$];
+        var this$Tabs_0 = this$Tabs;
+        this.d_kj89xv$('li', mapOf_0([to('style', new Css(void 0, void 0, void 0, Cursor$pointer_getInstance())), to('onClick', mobx.action(Tabs$render$lambda$lambda$lambda$lambda(this$Tabs_0, element)))]), Tabs$render$lambda$lambda$lambda$lambda_0(element, this$Tabs_0));
+      }
+    };
+  }
+  function Tabs$render$lambda(this$Tabs) {
+    return function () {
+      var tmp$;
+      this.d_kj89xv$('ul', void 0, Tabs$render$lambda$lambda(this$Tabs));
+      tmp$ = this$Tabs.selectedTab.get();
+      if (Kotlin.equals(tmp$, TabName$TabA_getInstance()))
+        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabA)));
+      else if (Kotlin.equals(tmp$, TabName$TabB_getInstance()))
+        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabB)));
+      else if (Kotlin.equals(tmp$, TabName$TabC_getInstance()))
+        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabC)));
+    };
+  }
+  Tabs.prototype.render = function () {
+    return d('div', void 0, Tabs$render$lambda(this));
+  };
+  Tabs.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Tabs',
+    baseClasses: []
+  };
+  function Counter() {
+    Counter$Companion_getInstance();
+    React.Component.call(this);
+    mobxReact.observer(this);
+    this.count = mobx.observable(0);
+    var tmp$;
+    tmp$ = Counter$Companion_getInstance();
+    this.key = (tmp$.key = tmp$.key + 1, tmp$.key);
+  }
+  Counter.prototype.increment = function () {
+    this.count.set(this.count.get() + 1);
+    Kotlin.println(this.count.get());
+  };
+  Counter.prototype.decrement = function () {
+    this.count.set(this.count.get() - 1);
+    Kotlin.println(this.count.get());
+  };
+  function Counter$render$lambda$lambda(this$Counter) {
+    return function () {
+      this$Counter.decrement();
+    };
+  }
+  function Counter$render$lambda$lambda_0(this$Counter) {
+    return function () {
+      this$Counter.increment();
+    };
+  }
+  function Counter$render$lambda(this$Counter, closure$value) {
+    return function () {
+      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Counter$render$lambda$lambda(this$Counter)))), ['-']);
+      this.text_61zpoe$(closure$value.toString());
+      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Counter$render$lambda$lambda_0(this$Counter)))), ['+']);
+    };
+  }
+  Counter.prototype.render = function () {
+    Kotlin.println('[Counter#render] count = ' + this.count.get());
+    var value = this.count.get();
+    return d('div', void 0, Counter$render$lambda(this, value));
+  };
+  function Counter$Companion() {
+    Counter$Companion_instance = this;
+    this.key = 0;
+  }
+  Counter$Companion.$metadata$ = {
+    type: Kotlin.TYPE.OBJECT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Companion',
+    baseClasses: []
+  };
+  var Counter$Companion_instance = null;
+  function Counter$Companion_getInstance() {
+    if (Counter$Companion_instance === null) {
+      Counter$Companion_instance = new Counter$Companion();
+    }
+    return Counter$Companion_instance;
+  }
+  Counter.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Counter',
+    baseClasses: []
+  };
+  function CounterList() {
+    React.Component.call(this);
+    mobxReact.observer(this);
+    var list = listOf_0(new Counter());
+    this.counters = mobx.observable(Kotlin.kotlin.collections.copyToArray(list));
+  }
+  CounterList.prototype.addCounter = function () {
+    this.counters.push(new Counter());
+  };
+  function CounterList$render$lambda$lambda$lambda(this$CounterList) {
+    return function () {
+      this.text_61zpoe$(' Counters: ' + this$CounterList.counters.length);
+    };
+  }
+  function CounterList$render$lambda$lambda(this$CounterList) {
+    return function () {
+      this.text_61zpoe$('CounterList');
+      this.d_kj89xv$('small', void 0, CounterList$render$lambda$lambda$lambda(this$CounterList));
+    };
+  }
+  function CounterList$render$lambda$lambda_0(this$CounterList) {
+    return function () {
+      this$CounterList.addCounter();
+    };
+  }
+  function CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter) {
+    return function () {
+      this$CounterList.counters.remove(closure$counter);
+    };
+  }
+  function CounterList$render$lambda$lambda$lambda$lambda(closure$counter, this$CounterList) {
+    return function () {
+      this.d_3d1yi4$(closure$counter.render());
+      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter)))), ['Delete']);
+    };
+  }
+  function CounterList$render$lambda$lambda$lambda_0(this$CounterList, this$) {
+    return function (counter) {
+      this$.d_kj89xv$('li', void 0, CounterList$render$lambda$lambda$lambda$lambda(counter, this$CounterList));
+    };
+  }
+  function CounterList$render$lambda$lambda_1(this$CounterList) {
+    return function () {
+      this$CounterList.counters.forEach(CounterList$render$lambda$lambda$lambda_0(this$CounterList, this));
+    };
+  }
+  function CounterList$render$lambda(this$CounterList) {
+    return function () {
+      this.d_kj89xv$('h3', void 0, CounterList$render$lambda$lambda(this$CounterList));
+      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(CounterList$render$lambda$lambda_0(this$CounterList)))), ['Add Counter']);
+      this.d_kj89xv$('ul', void 0, CounterList$render$lambda$lambda_1(this$CounterList));
+    };
+  }
+  CounterList.prototype.render = function () {
+    return d('div', void 0, CounterList$render$lambda(this));
+  };
+  CounterList.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'CounterList',
+    baseClasses: []
+  };
+  function App() {
+    React.Component.call(this);
+    mobxReact.observer(this);
+  }
+  function App$render$lambda() {
+    this.d_nxr5h6$(get_js(Kotlin.getKClass(BackgroundPicker)));
+    this.d_kj89xv$('hr');
+    this.d_nxr5h6$(get_js(Kotlin.getKClass(Clock)));
+    this.d_kj89xv$('hr');
+    this.d_nxr5h6$(get_js(Kotlin.getKClass(Tabs)));
+    this.d_kj89xv$('hr');
+    this.d_nxr5h6$(get_js(Kotlin.getKClass(CounterList)));
+  }
+  App.prototype.render = function () {
+    return d('div', mapOf(to('style', new Css(store.backgroundColor))), App$render$lambda);
+  };
+  App.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'App',
+    baseClasses: []
+  };
+  function main$lambda() {
+    store.now = new Date();
+  }
+  function main(args) {
+    var tmp$;
+    window.setInterval(mobx.action(main$lambda), 1000);
+    ReactDOM.render(React.createElement(get_js(Kotlin.getKClass(App))), (tmp$ = document.querySelector('#root')) != null ? tmp$ : Kotlin.throwNPE());
+  }
+  var observable = Kotlin.defineInlineFunction('kobx.com.danneu.kobx.mobx.observable_rtpmmf$', function (observable$A_0, isA, list) {
+    return mobx.observable(Kotlin.kotlin.collections.copyToArray(list));
+  });
   function Observable() {
   }
   Observable.prototype.activate = function () {
@@ -35,6 +606,7 @@ var kobx = function (_, Kotlin) {
       Object.keys(obj).forEach(function (key) {
         var mapping = {};
         mapping[key] = obj[key].value;
+        console.log('key is: "', key, '" , value is:', obj[key].value, 'mapping is', mapping);
         mobx.extendObservable(self, mapping);
       });
     }
@@ -45,450 +617,97 @@ var kobx = function (_, Kotlin) {
     simpleName: 'Observable',
     baseClasses: []
   };
-  function Counter() {
-    this.count = 0;
-    this.activate();
+  function ReactElement() {
   }
-  Object.defineProperty(Counter.prototype, 'twice', {
-    get: function () {
-      return this.count * 2;
-    }
-  });
-  Counter.prototype.test = function () {
-    return 42;
+  ReactElement.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'ReactElement',
+    baseClasses: []
   };
-  Counter.$metadata$ = {
+  function toJsObject$ObjectLiteral() {
+  }
+  toJsObject$ObjectLiteral.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'Counter',
-    baseClasses: [Observable]
-  };
-  function WillMount() {
-  }
-  WillMount.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'WillMount',
     baseClasses: []
   };
-  function DidMount() {
-  }
-  DidMount.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'DidMount',
-    baseClasses: []
-  };
-  function DidUpdate() {
-  }
-  DidUpdate.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'DidUpdate',
-    baseClasses: []
-  };
-  function WillUnmount() {
-  }
-  WillUnmount.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'WillUnmount',
-    baseClasses: []
-  };
-  function Component() {
-  }
-  Component.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'Component',
-    baseClasses: []
-  };
-  function render$lambda() {
-    imported$clear(this);
-  }
-  function render(component, domNode) {
-    imported$clear(domNode);
-    domNode.appendChild(component.render().render());
-  }
-  function mount$lambda() {
-    imported$clear(this);
-  }
-  function mount$lambda_0(closure$component, closure$rootNode, closure$prevTree, closure$prevDom) {
-    return function () {
-      var nextTree = closure$component.render();
-      var nextDom = patch(closure$rootNode, nextTree, closure$prevTree.v);
-      if (Kotlin.isType(closure$component, DidUpdate))
-        closure$component.componentDidUpdate();
-      closure$prevTree.v = nextTree;
-      closure$prevDom.v = nextDom;
-    };
-  }
-  function mount(component, rootNode) {
-    if (Kotlin.isType(component, WillMount))
-      component.componentWillMount();
-    var prevTree = {v: component.render()};
-    var prevDom = {v: prevTree.v.render()};
-    imported$clear(rootNode);
-    rootNode.appendChild(prevDom.v);
-    if (Kotlin.isType(component, DidMount))
-      component.componentDidMount();
-    mobx.autorun(mount$lambda_0(component, rootNode, prevTree, prevDom));
-  }
-  function setAttr(domNode, key, value) {
-    if (isCustomAttr(key))
-      return;
-    if (Kotlin.equals(value, false))
-      return domNode.removeAttribute(key);
-    else if (Kotlin.equals(value, true))
-      return domNode.setAttribute(key, key);
-    else
-      return domNode.setAttribute(key, value.toString());
-  }
-  function removeAttr(domNode, key) {
-    if (isCustomAttr(key))
-      return;
-    domNode.removeAttribute(key);
-  }
-  function isEventAttr(key) {
-    return imported$Regex('^on[A-Z]').containsMatchIn_6bul2c$(key);
-  }
-  function extractEventName(key) {
-    return imported$drop(key, 2).toLowerCase();
-  }
-  function isCustomAttr(key) {
-    return isEventAttr(key) || Kotlin.equals(key, 'forceUpdate');
-  }
-  function changed(new_0, old) {
-    if (Kotlin.isType(new_0, VTree$VNode) && Kotlin.isType(old, VTree$VText))
-      return true;
-    else if (Kotlin.isType(old, VTree$VNode) && Kotlin.isType(new_0, VTree$VText))
-      return true;
-    else if (Kotlin.isType(new_0, VTree$VText) && Kotlin.isType(old, VTree$VText) && new_0.body !== old.body)
-      return true;
-    else if (Kotlin.isType(new_0, VTree$VNode) && Kotlin.isType(old, VTree$VNode) && new_0.name !== old.name)
-      return true;
-    else if (Kotlin.isType(new_0, VTree$VNode) && new_0.attrs.get_za3rmp$('forceUpdate') != null)
-      return true;
-    else
-      return false;
-  }
-  function patch(domParent, newNode, oldNode, index) {
-    var tmp$0, tmp$1, tmp$2, tmp$3, tmp$4, tmp$5, tmp$6, tmp$7, tmp$8;
-    if (oldNode === void 0)
-      oldNode = null;
-    if (index === void 0)
-      index = 0;
-    if (oldNode == null)
-      tmp$8 = domParent.appendChild((newNode != null ? newNode : Kotlin.throwNPE()).render());
-    else if (newNode == null)
-      tmp$8 = domParent.removeChild((tmp$0 = domParent.childNodes[index]) != null ? tmp$0 : Kotlin.throwNPE());
-    else if (changed(newNode, oldNode))
-      tmp$8 = domParent.replaceChild(newNode.render(), (tmp$1 = domParent.childNodes[index]) != null ? tmp$1 : Kotlin.throwNPE());
-    else if (Kotlin.isType(newNode, VTree$VNode) && Kotlin.isType(oldNode, VTree$VNode)) {
-      patchAttrs(Kotlin.isType(tmp$2 = domParent.childNodes[index], Element) ? tmp$2 : Kotlin.throwCCE(), newNode.attrs, oldNode.attrs);
-      var newLength = newNode.kids.size;
-      var oldLength = oldNode.kids.size;
-      tmp$3 = imported$until(0, Math.max(newLength, oldLength));
-      tmp$4 = tmp$3.first;
-      tmp$5 = tmp$3.last;
-      tmp$6 = tmp$3.step;
-      for (var i = tmp$4; i <= tmp$5; i += tmp$6) {
-        patch((tmp$7 = domParent.childNodes[index]) != null ? tmp$7 : Kotlin.throwNPE(), imported$getOrNull(newNode.kids, i), imported$getOrNull(oldNode.kids, i), i);
+  function toJsObject($receiver) {
+    var obj = new toJsObject$ObjectLiteral();
+    var tmp$;
+    tmp$ = $receiver.entries.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      var k = element.key;
+      var v = element.value;
+      if (Kotlin.isType(v, Map)) {
+        obj[k] = toJsObject(v);
       }
-      tmp$8 = domParent;
-    }
-     else {
-      tmp$8 = domParent;
-    }
-    return tmp$8;
-  }
-  function patchAttr(domNode, key, newVal, oldVal) {
-    if (oldVal === void 0)
-      oldVal = null;
-    if (newVal == null)
-      removeAttr(domNode, key);
-    else if (oldVal == null)
-      setAttr(domNode, key, newVal);
-    else if (!Kotlin.equals(newVal, oldVal))
-      setAttr(domNode, key, newVal);
-    else {
-      imported$kotlin.Unit;
-    }
-  }
-  function patchAttrs$lambda(closure$domNode, closure$newAttrs, closure$oldAttrs) {
-    return function (key) {
-      patchAttr(closure$domNode, key, closure$newAttrs.get_za3rmp$(key), closure$oldAttrs.get_za3rmp$(key));
-    };
-  }
-  function patchAttrs(domNode, newAttrs, oldAttrs) {
-    if (oldAttrs === void 0)
-      oldAttrs = imported$emptyMap();
-    var attrs = imported$plus(newAttrs, oldAttrs);
-    var tmp$0;
-    tmp$0 = attrs.keys.iterator();
-    while (tmp$0.hasNext()) {
-      var element = tmp$0.next();
-      var closure$oldAttrs = oldAttrs;
-      patchAttr(domNode, element, newAttrs.get_za3rmp$(element), closure$oldAttrs.get_za3rmp$(element));
-    }
-  }
-  function Store() {
-    this.time = new Date();
-    this.activate();
-  }
-  Store.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'Store',
-    baseClasses: [Observable]
-  };
-  var store;
-  function Clock() {
-  }
-  function Clock$render$lambda(closure$time) {
-    return function () {
-      this.text_61zpoe$(closure$time.toString());
-    };
-  }
-  Clock.prototype.render = function () {
-    var time = store.time;
-    return node('span', void 0, Clock$render$lambda(time));
-  };
-  Clock.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'Clock',
-    baseClasses: [Component]
-  };
-  function main$lambda() {
-    store.time = new Date();
-  }
-  function main(args) {
-    var tmp$0;
-    var clock = new Clock();
-    window.setInterval(mobx.action(main$lambda), 1000);
-    mount(clock, (tmp$0 = document.body) != null ? tmp$0 : Kotlin.throwNPE());
-  }
-  function VTree() {
-  }
-  function VTree$VNode(name, attrs, kids) {
-    if (kids === void 0)
-      kids = imported$mutableListOf([]);
-    VTree.call(this);
-    this.name = name;
-    this.attrs = attrs;
-    this.kids = kids;
-  }
-  function VTree$VNode$node$lambda() {
-  }
-  VTree$VNode.prototype.node_u1spbu$ = function (name, attrs, block) {
-    if (attrs === void 0)
-      attrs = imported$emptyMap();
-    if (block === void 0)
-      block = VTree$VNode$node$lambda;
-    var kid = new VTree$VNode(name, attrs);
-    block.call(kid);
-    this.kids.add_za3rmp$(kid);
-    return kid;
-  };
-  function VTree$VNode$text$lambda(this$VNode) {
-    return function () {
-      this$VNode.kids.add_za3rmp$(this);
-    };
-  }
-  VTree$VNode.prototype.text_61zpoe$ = function (body) {
-    var $receiver = new VTree$VText(body);
-    this.kids.add_za3rmp$($receiver);
-    return $receiver;
-  };
-  VTree$VNode.prototype.toString = function () {
-    var str = '[' + this.name;
-    if (!this.attrs.isEmpty()) {
-      str += ' ' + this.attrs;
-    }
-    if (!this.kids.isEmpty()) {
-      var $receiver_1 = this.kids;
-      var transform = Kotlin.getCallableRefForMemberFunction(VTree, 'toString');
-      var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$(Kotlin.kotlin.collections.collectionSizeOrDefault_0($receiver_1, 10));
-      var tmp$0;
-      tmp$0 = $receiver_1.iterator();
-      while (tmp$0.hasNext()) {
-        var item = tmp$0.next();
-        destination.add_za3rmp$(transform(item));
-      }
-      str += ' ' + destination;
-    }
-    return str + ']';
-  };
-  function VTree$VNode$render$lambda(closure$domNode) {
-    return function (entry) {
-      setAttr(closure$domNode, entry.key, entry.value);
-    };
-  }
-  function VTree$VNode$render$lambda_0(it) {
-    return isEventAttr(it.key);
-  }
-  function VTree$VNode$render$lambda_1(closure$domNode) {
-    return function (f) {
-      var key = f.key;
-      var handler = f.value;
-      closure$domNode.addEventListener(extractEventName(key), handler);
-    };
-  }
-  function VTree$VNode$render$lambda_2(closure$domNode) {
-    return function (kid) {
-      closure$domNode.appendChild(kid);
-    };
-  }
-  VTree$VNode.prototype.render = function () {
-    var domNode = document.createElement(this.name);
-    var tmp$5;
-    tmp$5 = this.attrs.entries.iterator();
-    while (tmp$5.hasNext()) {
-      var element = tmp$5.next();
-      setAttr(domNode, element.key, element.value);
-    }
-    var $receiver_0 = this.attrs.entries;
-    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$();
-    var tmp$6;
-    tmp$6 = $receiver_0.iterator();
-    while (tmp$6.hasNext()) {
-      var element_0 = tmp$6.next();
-      if (isEventAttr(element_0.key)) {
-        destination.add_za3rmp$(element_0);
+       else {
+        obj[k] = v;
       }
     }
-    var destination_0 = Kotlin.kotlin.collections.ArrayList_init_za3lpa$();
-    var tmp$7;
-    tmp$7 = destination.iterator();
-    while (tmp$7.hasNext()) {
-      var element_1 = tmp$7.next();
-      if (element_1 == null || Kotlin.isType(element_1, imported$Map$Entry)) {
-        destination_0.add_za3rmp$(element_1);
-      }
-    }
-    var tmp$8;
-    tmp$8 = destination_0.iterator();
-    while (tmp$8.hasNext()) {
-      var element_2 = tmp$8.next();
-      var key = element_2.key;
-      var handler = element_2.value;
-      domNode.addEventListener(extractEventName(key), handler);
-    }
-    var $receiver_3 = this.kids;
-    var transform = Kotlin.getCallableRefForMemberFunction(VTree, 'render');
-    var destination_1 = Kotlin.kotlin.collections.ArrayList_init_za3lpa$(Kotlin.kotlin.collections.collectionSizeOrDefault_0($receiver_3, 10));
-    var tmp$9;
-    tmp$9 = $receiver_3.iterator();
-    while (tmp$9.hasNext()) {
-      var item = tmp$9.next();
-      destination_1.add_za3rmp$(transform(item));
-    }
-    var tmp$10;
-    tmp$10 = destination_1.iterator();
-    while (tmp$10.hasNext()) {
-      var element_3 = tmp$10.next();
-      domNode.appendChild(element_3);
-    }
-    return domNode;
-  };
-  VTree$VNode.prototype.copy = function () {
-    var tmp$1 = this.name;
-    var tmp$2 = imported$HashMap_init(this.attrs);
-    var $receiver = this.kids;
-    var transform = Kotlin.getCallableRefForMemberFunction(VTree, 'copy');
-    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$(Kotlin.kotlin.collections.collectionSizeOrDefault_0($receiver, 10));
-    var tmp$4;
-    tmp$4 = $receiver.iterator();
-    while (tmp$4.hasNext()) {
-      var item = tmp$4.next();
-      destination.add_za3rmp$(transform(item));
-    }
-    return new VTree$VNode(tmp$1, tmp$2, imported$toMutableList(destination));
-  };
-  VTree$VNode.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'VNode',
-    baseClasses: [VTree]
-  };
-  function VTree$VText(body) {
-    VTree.call(this);
-    this.body = body;
+    return obj;
   }
-  VTree$VText.prototype.toString = function () {
-    return '[Text ' + '"' + this.body + '"' + ']';
-  };
-  VTree$VText.prototype.render = function () {
-    return document.createTextNode(this.body);
-  };
-  VTree$VText.prototype.copy = function () {
-    return new VTree$VText(this.body);
-  };
-  VTree$VText.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'VText',
-    baseClasses: [VTree]
-  };
-  VTree.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'VTree',
-    baseClasses: []
-  };
-  function text_0(body) {
-    return new VTree$VText(body);
-  }
-  function node$lambda() {
-  }
-  function node(name, attrs, block) {
-    if (attrs === void 0)
-      attrs = imported$emptyMap();
-    if (block === void 0)
-      block = node$lambda;
-    var $receiver = new VTree$VNode(name, attrs);
-    block.call($receiver);
-    return $receiver;
-  }
-  Counter.prototype.activate = Observable.prototype.activate;
   Store.prototype.activate = Observable.prototype.activate;
+  Object.defineProperty(Cursor, 'auto', {
+    get: Cursor$auto_getInstance
+  });
+  Object.defineProperty(Cursor, 'default', {
+    get: Cursor$default_getInstance
+  });
+  Object.defineProperty(Cursor, 'none', {
+    get: Cursor$none_getInstance
+  });
+  Object.defineProperty(Cursor, 'pointer', {
+    get: Cursor$pointer_getInstance
+  });
   var package$com = _.com || (_.com = {});
   var package$danneu = package$com.danneu || (package$com.danneu = {});
   var package$kobx = package$danneu.kobx || (package$danneu.kobx = {});
-  package$kobx.Observable = Observable;
-  package$kobx.Counter = Counter;
-  var package$ui = package$kobx.ui || (package$kobx.ui = {});
-  package$ui.WillMount = WillMount;
-  package$ui.DidMount = DidMount;
-  package$ui.DidUpdate = DidUpdate;
-  package$ui.WillUnmount = WillUnmount;
-  package$ui.Component = Component;
-  package$ui.render_br5t06$ = render;
-  package$ui.mount_br5t06$ = mount;
-  var package$vdom = package$kobx.vdom || (package$kobx.vdom = {});
-  package$vdom.setAttr_3zp812$ = setAttr;
-  package$vdom.removeAttr_t9mn69$ = removeAttr;
-  package$vdom.isEventAttr_61zpoe$ = isEventAttr;
-  package$vdom.extractEventName_61zpoe$ = extractEventName;
-  package$vdom.isCustomAttr_61zpoe$ = isCustomAttr;
-  package$vdom.changed_aksyjw$ = changed;
-  package$vdom.patch_3mcib5$ = patch;
-  package$vdom.patchAttr_b8zqcx$ = patchAttr;
-  package$vdom.patchAttrs_1us6ib$ = patchAttrs;
-  package$vdom.Store = Store;
-  Object.defineProperty(package$vdom, 'store', {
+  package$kobx.Cursor = Cursor;
+  package$kobx.Css = Css;
+  package$kobx.D = D;
+  package$kobx.d_kj89xv$ = d;
+  package$kobx.d_oicq7u$ = d_0;
+  package$kobx.Store = Store;
+  Object.defineProperty(package$kobx, 'store', {
     get: function () {
       return store;
     }
   });
-  package$vdom.Clock = Clock;
-  package$vdom.main_kand9s$ = main;
-  VTree.VNode = VTree$VNode;
-  VTree.VText = VTree$VText;
-  package$vdom.VTree = VTree;
-  package$vdom.text_61zpoe$ = text_0;
-  package$vdom.node_u1spbu$ = node;
+  Object.defineProperty(BackgroundPicker, 'Companion', {
+    get: BackgroundPicker$Companion_getInstance
+  });
+  package$kobx.BackgroundPicker = BackgroundPicker;
+  package$kobx.Clock = Clock;
+  Object.defineProperty(TabName, 'TabA', {
+    get: TabName$TabA_getInstance
+  });
+  Object.defineProperty(TabName, 'TabB', {
+    get: TabName$TabB_getInstance
+  });
+  Object.defineProperty(TabName, 'TabC', {
+    get: TabName$TabC_getInstance
+  });
+  package$kobx.TabName = TabName;
+  package$kobx.TabA = TabA;
+  package$kobx.TabB = TabB;
+  package$kobx.TabC = TabC;
+  package$kobx.Tabs = Tabs;
+  Object.defineProperty(Counter, 'Companion', {
+    get: Counter$Companion_getInstance
+  });
+  package$kobx.Counter = Counter;
+  package$kobx.CounterList = CounterList;
+  package$kobx.App = App;
+  package$kobx.main_kand9s$ = main;
+  var package$mobx = package$kobx.mobx || (package$kobx.mobx = {});
+  package$mobx.observable_rtpmmf$ = observable;
+  package$mobx.Observable = Observable;
+  var package$react = package$kobx.react || (package$kobx.react = {});
+  package$react.ReactElement = ReactElement;
+  package$react.toJsObject_efxzmg$ = toJsObject;
   store = new Store();
   Kotlin.defineModule('kobx', _);
   main([]);

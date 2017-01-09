@@ -19,6 +19,7 @@ interface Observable {
             Object.keys(obj).forEach(function (key) {
                 var mapping = {}
                 mapping[key] = obj[key].value
+                console.log('key is: "', key, '" , value is:', obj[key].value, 'mapping is', mapping)
                 mobx.extendObservable(self, mapping)
             })
         """)
