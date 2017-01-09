@@ -73,7 +73,8 @@ class Clock : Component() {
         val now = store.now
         return d("div") {
             d("p", null, "Since epoch: ${store.millisSinceEpoch}")
-            d("p", mapOf("onClick" to action { store.now = Date() }), "time is $now")
+            d("span", null, "time is $now ")
+            d("button", mapOf("onClick" to action { store.now = Date() }), "Update to now")
         }
     }
 }
@@ -96,27 +97,19 @@ class Tabs : Component() {
 
     val selectedTab = observable(TabName.TabA)
 
-    // TODO: Figure out how to support d(component) e.g. d(Tab(TabName.TabA))
-//    class Tab(val tab: TabName) : Component() {
-//        override fun render(): ReactElement = d("div", mapOf("style" to Css(height = "50px", width = "100px", border = "2px solid black"))) {
-//            text(tab.prettyName)
-//        }
-//    }
-
     fun renderTab(tab: TabName, isSelected: Boolean): ReactElement = d("div") {
-        text(tab.prettyName)
-        if (isSelected) {
-            text(" (Selected)")
+        d("button", mapOf("onClick" to action { selectedTab.set(tab) }))  {
+            text(tab.prettyName)
+            if (isSelected) {
+                text(" (Selected)")
+            }
         }
     }
 
     override fun render(): ReactElement = d("div") {
         d("ul") {
             TabName.values().forEach { tab ->
-                d("li", mapOf(
-                    "style" to Css(cursor = pointer),
-                    "onClick" to action { selectedTab.set(tab) })
-                ) {
+                d("li") {
                     d(renderTab(tab, isSelected = tab == selectedTab.get()))
                 }
             }
@@ -205,7 +198,10 @@ class App : Component() {
 
 
 fun main(args: Array<String>) {
-    window.setInterval(action({ store.now = Date() }), 1000)
+    // Update the time every second, which will trigger a re-render in the components that deref the time
+    window.setInterval(action({
+        store.now = Date()
+    }), 1000)
 
     ReactDOM.render(React.createElement(App::class.js), document.querySelector("#root")!!)
 }

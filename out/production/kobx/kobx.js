@@ -5,6 +5,7 @@ var kobx = function (_, Kotlin) {
   'use strict';
   var Enum = Kotlin.kotlin.Enum;
   var toMutableList = Kotlin.kotlin.collections.toMutableList_eg9ybj$;
+  var emptyList = Kotlin.kotlin.collections.emptyList;
   var to = Kotlin.kotlin.to_l1ob02$;
   var mapOf = Kotlin.kotlin.collections.mapOf_dvvt93$;
   var mapOf_0 = Kotlin.kotlin.collections.mapOf_eoa9s7$;
@@ -222,6 +223,23 @@ var kobx = function (_, Kotlin) {
     var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
     return React.createElement(root.a, root.b, [text]);
   }
+  function node_1(tag, attrs, children) {
+    if (attrs === void 0)
+      attrs = null;
+    if (children === void 0)
+      children = emptyList();
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    var tmp$ = root.a;
+    var tmp$_0 = root.b;
+    var $receiver = children;
+    return React.createElement(tmp$, tmp$_0, Kotlin.kotlin.collections.copyToArray($receiver));
+  }
+  function node_2(tag, attrs, component) {
+    if (attrs === void 0)
+      attrs = null;
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    return React.createElement(root.a, root.b, component);
+  }
   function Store() {
     this.backgroundColor = 'white';
     this.now = new Date();
@@ -313,7 +331,8 @@ var kobx = function (_, Kotlin) {
   function Clock$render$lambda(closure$now) {
     return function () {
       this.d_16rng9$('p', null, ['Since epoch: ' + store.millisSinceEpoch]);
-      this.d_16rng9$('p', mapOf(to('onClick', mobx.action(Clock$render$lambda$lambda))), ['time is ' + closure$now]);
+      this.d_16rng9$('span', null, ['time is ' + closure$now + ' ']);
+      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Clock$render$lambda$lambda))), ['Update to now']);
     };
   }
   Clock.prototype.render = function () {
@@ -417,7 +436,12 @@ var kobx = function (_, Kotlin) {
     mobxReact.observer(this);
     this.selectedTab = mobx.observable(TabName$TabA_getInstance());
   }
-  function Tabs$renderTab$lambda(closure$tab, closure$isSelected) {
+  function Tabs$renderTab$lambda$lambda(this$Tabs, closure$tab) {
+    return function () {
+      this$Tabs.selectedTab.set(closure$tab);
+    };
+  }
+  function Tabs$renderTab$lambda$lambda_0(closure$tab, closure$isSelected) {
     return function () {
       this.text_61zpoe$(closure$tab.prettyName);
       if (closure$isSelected) {
@@ -425,15 +449,15 @@ var kobx = function (_, Kotlin) {
       }
     };
   }
-  Tabs.prototype.renderTab_3cf6xz$ = function (tab, isSelected) {
-    return d('div', void 0, Tabs$renderTab$lambda(tab, isSelected));
-  };
-  function Tabs$render$lambda$lambda$lambda$lambda(this$Tabs, closure$tab) {
+  function Tabs$renderTab$lambda(this$Tabs, closure$tab, closure$isSelected) {
     return function () {
-      this$Tabs.selectedTab.set(closure$tab);
+      this.d_kj89xv$('button', mapOf(to('onClick', mobx.action(Tabs$renderTab$lambda$lambda(this$Tabs, closure$tab)))), Tabs$renderTab$lambda$lambda_0(closure$tab, closure$isSelected));
     };
   }
-  function Tabs$render$lambda$lambda$lambda$lambda_0(closure$tab, this$Tabs) {
+  Tabs.prototype.renderTab_3cf6xz$ = function (tab, isSelected) {
+    return d('div', void 0, Tabs$renderTab$lambda(this, tab, isSelected));
+  };
+  function Tabs$render$lambda$lambda$lambda$lambda(closure$tab, this$Tabs) {
     return function () {
       this.d_3d1yi4$(this$Tabs.renderTab_3cf6xz$(closure$tab, closure$tab === this$Tabs.selectedTab.get()));
     };
@@ -444,8 +468,7 @@ var kobx = function (_, Kotlin) {
       var tmp$;
       for (tmp$ = 0; tmp$ !== $receiver.length; ++tmp$) {
         var element = $receiver[tmp$];
-        var this$Tabs_0 = this$Tabs;
-        this.d_kj89xv$('li', mapOf_0([to('style', new Css(void 0, void 0, void 0, Cursor$pointer_getInstance())), to('onClick', mobx.action(Tabs$render$lambda$lambda$lambda$lambda(this$Tabs_0, element)))]), Tabs$render$lambda$lambda$lambda$lambda_0(element, this$Tabs_0));
+        this.d_kj89xv$('li', void 0, Tabs$render$lambda$lambda$lambda$lambda(element, this$Tabs));
       }
     };
   }
@@ -704,6 +727,8 @@ var kobx = function (_, Kotlin) {
   package$kobx.node_kj89xv$ = node;
   package$kobx.d_oicq7u$ = d_0;
   package$kobx.node_oicq7u$ = node_0;
+  package$kobx.node_h93uci$ = node_1;
+  package$kobx.node_gm0inq$ = node_2;
   package$kobx.Store = Store;
   Object.defineProperty(package$kobx, 'store', {
     get: function () {

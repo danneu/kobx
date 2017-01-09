@@ -78,3 +78,15 @@ fun node(tag: String, attrs: Map<*, *>? = null, text: String = ""): ReactElement
     val root = D(tag, attrs?.toJsObject())
     return React.createElement(root.a, root.b, arrayOf(text))
 }
+
+// new
+
+fun node(tag: String, attrs: Map<*, *>? = null, children: List<ReactElement> = emptyList()): ReactElement {
+    val root = D(tag, attrs?.toJsObject())
+    return React.createElement(root.a, root.b, children.toTypedArray())
+}
+
+fun node(tag: String, attrs: Map<*, *>? = null, component: Component): ReactElement {
+    val root = D(tag, attrs?.toJsObject())
+    return React.createElement(root.a, root.b, component)
+}

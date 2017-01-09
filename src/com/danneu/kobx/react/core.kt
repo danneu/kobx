@@ -1,13 +1,5 @@
 package com.danneu.kobx.react
 
-import com.danneu.kobx.Css
-import com.danneu.kobx.mobx.Observable
-import com.danneu.kobx.mobx.action
-import com.danneu.kobx.mobx.observable
-import com.danneu.kobx.mobx.observer
-import kotlin.browser.document
-import kotlin.reflect.KClass
-
 interface ReactElement
 
 external class Object
@@ -26,6 +18,8 @@ fun Map<*, *>.toJsObject(): Object {
 
 @JsName("React")
 external object React {
-    fun createElement(tag: String, attrs: Object? = null, vararg kids: Any): ReactElement
+    fun createElement(component: Component, attrs: Object? = null, vararg kids: Any): ReactElement
+    fun createElement(element: ReactElement, attrs: Object? = null, vararg kids: Any): ReactElement
+    fun createElement(tag: String, attrs: Object? = null, vararg kids: dynamic): ReactElement
     fun createElement(jsclass: JsClass<*>, attrs: Object? = null, vararg kids: Any): ReactElement
 }
