@@ -6,6 +6,7 @@ import com.danneu.kobx.mobx.action
 import com.danneu.kobx.mobx.observer
 import com.danneu.kobx.mobx.observable
 import com.danneu.kobx.react.Component
+import com.danneu.kobx.react.DidMount
 import com.danneu.kobx.react.React
 import com.danneu.kobx.react.ReactDOM
 import com.danneu.kobx.react.ReactElement
@@ -132,14 +133,15 @@ class Tabs : Component() {
 
 }
 
-class Counter : Component() {
+class Counter : Component(), DidMount {
     init { observer(this) }
     val count = observable(0)
     val key = ++Companion.key
-    fun increment() { count.set(count.get() + 1); println(count.get()) }
-    fun decrement() { count.set(count.get() - 1); println(count.get()) }
+    fun increment() { count.set(count.get() + 1) }
+    fun decrement() { count.set(count.get() - 1) }
+
     override fun render(): ReactElement {
-        println("[Counter#render] count = ${count.get()}")
+        println("[Counter#render] count = ${count.get()}, key = $key")
         val value = count.get()
         return d("div") {
             d("button", mapOf("onClick" to action { decrement() }), "-")
@@ -147,6 +149,11 @@ class Counter : Component() {
             d("button", mapOf("onClick" to action { increment() }), "+")
         }
     }
+
+    override fun componentDidMount() {
+        println("Counter $key did mount")
+    }
+
     companion object {
         var key = 0
     }
@@ -158,31 +165,25 @@ class CounterList : Component() {
 
     fun addCounter() = counters.push(Counter())
 
-    override fun render(): ReactElement = d("div") {
-        d("h3") {
-            text("CounterList")
-            d("small") {
-                text(" Counters: ${counters.length}")
-            }
-        }
-        d("button", mapOf("onClick" to action { addCounter() }), "Add Counter")
-        d("ul") {
-            counters.forEach { counter ->
-                d("li") {
-                    // FIXME: Re-renders each time. Figure out how to support `components.map { d(component) }`
-                    d(counter.render())
-                    d("button", mapOf("onClick" to action { counters.remove(counter) }), "Delete")
+    override fun render(): ReactElement {
+        return d("div") {
+            d("h3") {
+                text("CounterList")
+                d("small") {
+                    text(" Counters: ${counters.length}")
                 }
             }
-
-            // TODO: Get this working
-//            ds(counters.map { counter ->
-//                d("li") {
-//                    // FIXME: Re-renders each time. Figure out how to support `components.map { d(component) }`
-//                    //d(counter.render())
-//                    d("button", mapOf("onClick" to action { counters.remove(counter) }), "Delete")
-//                }
-//            })
+            d("button", mapOf("onClick" to action { addCounter() }), "Add Counter")
+            d("ul") {
+                // TODO: Get this working
+                ds(counters.map { counter ->
+                    node("li", mapOf("key" to counter.key)) {
+                        // FIXME: Re-renders each time. Figure out how to support `components.map { d(component) }`
+                        d(counter.render())
+                        d("button", mapOf("onClick" to action { counters.remove(counter) }), "Delete")
+                    }
+                })
+            }
         }
     }
 }

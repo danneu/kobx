@@ -154,8 +154,14 @@ var kobx = function (_, Kotlin) {
   D.prototype.d_3d1yi4$ = function (el) {
     this.kids.add_za3rmp$(el);
   };
-  D.prototype.ds_727x2e$ = function (list) {
+  D.prototype.d_nd53m$ = function (c) {
+    this.kids.add_za3rmp$(c);
+  };
+  D.prototype.ds_rtpmmf$ = function (list) {
     this.kids.add_za3rmp$(Kotlin.kotlin.collections.copyToArray(list));
+  };
+  D.prototype.ds_9mqe4v$ = function (array) {
+    this.kids.add_za3rmp$(array);
   };
   D.prototype.text_61zpoe$ = function (string) {
     this.kids.add_za3rmp$(string);
@@ -183,7 +189,32 @@ var kobx = function (_, Kotlin) {
     var $receiver = root.kids;
     return tmp$_0.apply(tmp$_1, tmp$_3(Kotlin.kotlin.collections.copyToArray($receiver)));
   }
+  function node$lambda() {
+  }
+  function node(tag, attrs, block) {
+    var tmp$;
+    if (attrs === void 0)
+      attrs = null;
+    if (block === void 0)
+      block = node$lambda;
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    block.call(root);
+    var tmp$_0 = (tmp$ = React).createElement;
+    var tmp$_1 = tmp$;
+    var tmp$_2 = [root.a, root.b];
+    var tmp$_3 = tmp$_2.concat.bind(tmp$_2);
+    var $receiver = root.kids;
+    return tmp$_0.apply(tmp$_1, tmp$_3(Kotlin.kotlin.collections.copyToArray($receiver)));
+  }
   function d_0(tag, attrs, text) {
+    if (attrs === void 0)
+      attrs = null;
+    if (text === void 0)
+      text = '';
+    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
+    return React.createElement(root.a, root.b, [text]);
+  }
+  function node_0(tag, attrs, text) {
     if (attrs === void 0)
       attrs = null;
     if (text === void 0)
@@ -451,11 +482,9 @@ var kobx = function (_, Kotlin) {
   }
   Counter.prototype.increment = function () {
     this.count.set(this.count.get() + 1);
-    Kotlin.println(this.count.get());
   };
   Counter.prototype.decrement = function () {
     this.count.set(this.count.get() - 1);
-    Kotlin.println(this.count.get());
   };
   function Counter$render$lambda$lambda(this$Counter) {
     return function () {
@@ -475,9 +504,12 @@ var kobx = function (_, Kotlin) {
     };
   }
   Counter.prototype.render = function () {
-    Kotlin.println('[Counter#render] count = ' + this.count.get());
+    Kotlin.println('[Counter#render] count = ' + this.count.get() + ', key = ' + this.key);
     var value = this.count.get();
     return d('div', void 0, Counter$render$lambda(this, value));
+  };
+  Counter.prototype.componentDidMount = function () {
+    Kotlin.println('Counter ' + this.key + ' did mount');
   };
   function Counter$Companion() {
     Counter$Companion_instance = this;
@@ -538,14 +570,14 @@ var kobx = function (_, Kotlin) {
       this.d_16rng9$('button', mapOf(to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter)))), ['Delete']);
     };
   }
-  function CounterList$render$lambda$lambda$lambda_0(this$CounterList, this$) {
+  function CounterList$render$lambda$lambda$lambda_0(this$CounterList) {
     return function (counter) {
-      this$.d_kj89xv$('li', void 0, CounterList$render$lambda$lambda$lambda$lambda(counter, this$CounterList));
+      return node('li', mapOf(to('key', counter.key)), CounterList$render$lambda$lambda$lambda$lambda(counter, this$CounterList));
     };
   }
   function CounterList$render$lambda$lambda_1(this$CounterList) {
     return function () {
-      this$CounterList.counters.forEach(CounterList$render$lambda$lambda$lambda_0(this$CounterList, this));
+      this.ds_9mqe4v$(this$CounterList.counters.map(CounterList$render$lambda$lambda$lambda_0(this$CounterList)));
     };
   }
   function CounterList$render$lambda(this$CounterList) {
@@ -669,7 +701,9 @@ var kobx = function (_, Kotlin) {
   package$kobx.Css = Css;
   package$kobx.D = D;
   package$kobx.d_kj89xv$ = d;
+  package$kobx.node_kj89xv$ = node;
   package$kobx.d_oicq7u$ = d_0;
+  package$kobx.node_oicq7u$ = node_0;
   package$kobx.Store = Store;
   Object.defineProperty(package$kobx, 'store', {
     get: function () {

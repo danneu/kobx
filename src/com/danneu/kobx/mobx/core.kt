@@ -40,7 +40,7 @@ external class ObservableBox <T> {
 external class ObservableArray <A> {
     fun push(item: A)
     val length: Int
-    fun <B> map(xform: (A) -> B): List<B>
+    fun <B> map(xform: (A) -> B): Array<B>
     fun forEach(process: (A) -> Unit)
     // mobx
     fun remove(value: A): Boolean
