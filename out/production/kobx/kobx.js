@@ -92,7 +92,7 @@ var kobx = function (_, Kotlin) {
     }
   }
   Cursor.valueOf_61zpoe$ = Cursor$valueOf;
-  function Css(backgroundColor, border, color, cursor, width, height) {
+  function Css(backgroundColor, border, color, cursor, width, height, textAlign) {
     if (backgroundColor === void 0)
       backgroundColor = null;
     if (border === void 0)
@@ -105,12 +105,15 @@ var kobx = function (_, Kotlin) {
       width = null;
     if (height === void 0)
       height = null;
+    if (textAlign === void 0)
+      textAlign = null;
     this.backgroundColor = backgroundColor;
     this.border = border;
     this.color = color;
     this.cursor = cursor;
     this.width = width;
     this.height = height;
+    this.textAlign = textAlign;
   }
   Css.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -623,7 +626,21 @@ var kobx = function (_, Kotlin) {
     React.Component.call(this);
     mobxReact.observer(this);
   }
+  function App$render$lambda$lambda$lambda() {
+    this.text_61zpoe$('Source: ');
+    this.d_16rng9$('a', mapOf(to('href', 'https://github.com/danneu/kobx')), ['github.com/danneu/kobx']);
+    this.text_61zpoe$(' \u2013 A demonstration of ');
+    this.d_16rng9$('a', mapOf_0([to('href', 'https://github.com/mobxjs/mobx'), to('target', '_blank')]), ['MobX']);
+    this.text_61zpoe$(' + ');
+    this.d_16rng9$('a', mapOf_0([to('href', 'https://facebook.github.io/react/'), to('target', '_blank')]), ['React']);
+    this.text_61zpoe$(' components written in Kotlin, compiled to Javascript');
+  }
+  function App$render$lambda$lambda() {
+    this.d_kj89xv$('p', void 0, App$render$lambda$lambda$lambda);
+  }
   function App$render$lambda() {
+    this.d_kj89xv$('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, 'right'))), App$render$lambda$lambda);
+    this.d_kj89xv$('hr');
     this.d_nxr5h6$(get_js(Kotlin.getKClass(BackgroundPicker)));
     this.d_kj89xv$('hr');
     this.d_nxr5h6$(get_js(Kotlin.getKClass(Clock)));

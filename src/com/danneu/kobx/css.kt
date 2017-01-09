@@ -14,5 +14,6 @@ class Css(
     var color: String? = null,
     var cursor: Cursor? = null,
     var width: String? = null,
-    var height: String? = null
+    var height: String? = null,
+    var textAlign: String? = null
 )

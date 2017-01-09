@@ -185,6 +185,18 @@ class CounterList : Component() {
 class App : Component() {
     init { observer(this) }
     override fun render(): ReactElement = d("div", mapOf("style" to Css(backgroundColor = store.backgroundColor))) {
+        d("div", mapOf("style" to Css(textAlign = "right"))) {
+            d("p") {
+                text("Source: ")
+                d("a", mapOf("href" to "https://github.com/danneu/kobx"), "github.com/danneu/kobx")
+                text(" – A demonstration of ")
+                d("a", mapOf("href" to "https://github.com/mobxjs/mobx", "target" to "_blank"), "MobX")
+                text(" + ")
+                d("a", mapOf("href" to "https://facebook.github.io/react/", "target" to "_blank"), "React")
+                text(" components written in Kotlin, compiled to Javascript")
+            }
+        }
+        d("hr")
         d(BackgroundPicker::class.js)
         d("hr")
         d(Clock::class.js)
