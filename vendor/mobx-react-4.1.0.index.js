@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.PropTypes = exports.propTypes = exports.inject = exports.Provider = exports.useStaticRendering = exports.trackComponents = exports.componentByNodeRegistery = exports.renderReporter = exports.Observer = exports.observer = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var _observer = __webpack_require__(1);
 
@@ -172,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Observer = exports.renderReporter = exports.componentByNodeRegistery = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports.trackComponents = trackComponents;
 	exports.useStaticRendering = useStaticRendering;
@@ -245,7 +245,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 
 	function patch(target, funcName) {
-	  var runMixinFirst = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+	  var runMixinFirst = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
 	  var base = target[funcName];
 	  var mixinFunc = reactiveMixin[funcName];
@@ -576,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	exports.default = inject;
 
@@ -797,7 +797,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function Provider() {
 	    _classCallCheck(this, Provider);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Provider).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (Provider.__proto__ || Object.getPrototypeOf(Provider)).apply(this, arguments));
 	  }
 
 	  _createClass(Provider, [{
@@ -816,7 +816,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      // add own stores
 	      for (var _key in this.props) {
-	        if (!specialReactKeys[_key]) stores[_key] = this.props[_key];
+	        if (!specialReactKeys[_key] && _key !== "suppressChangedStoreWarning") stores[_key] = this.props[_key];
 	      }return {
 	        mobxStores: stores
 	      };
@@ -824,9 +824,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: "componentWillReceiveProps",
 	    value: function componentWillReceiveProps(nextProps) {
-	      // Maybe this warning is to aggressive?
+	      // Maybe this warning is too aggressive?
 	      if (Object.keys(nextProps).length !== Object.keys(this.props).length) console.warn("MobX Provider: The set of provided stores has changed. Please avoid changing stores as the change might not propagate to all children");
-	      for (var key in nextProps) {
+	      if (!nextProps.suppressChangedStoreWarning) for (var key in nextProps) {
 	        if (!specialReactKeys[key] && this.props[key] !== nextProps[key]) console.warn("MobX Provider: Provided store '" + key + "' has changed. Please avoid replacing stores as the change might not propagate to all children");
 	      }
 	    }
@@ -858,7 +858,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.objectOrObservableObject = exports.arrayOrObservableArrayOf = exports.arrayOrObservableArray = exports.observableObject = exports.observableMap = exports.observableArrayOf = exports.observableArray = undefined;
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 	var _mobx = __webpack_require__(2);
 
