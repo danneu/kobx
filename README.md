@@ -3,9 +3,14 @@
 
 Experimental mobx + react bindings for kotlin-javascript.
 
-## Example
+## Live Demo
 
-(Note: More thorough example exists in `main.kt`)
+The `main.kt` file is hosted live here: <https://www.danneu.com/kobx>
+
+It demonstrates various component/UI interactions, and it's where I test
+kobx functionality as I develop it.
+
+## Quick Example
 
 Displays a clock component that updates the time
 every second, triggering a component re-render each time.
