@@ -92,7 +92,7 @@ var kobx = function (_, Kotlin) {
     }
   }
   Cursor.valueOf_61zpoe$ = Cursor$valueOf;
-  function Css(backgroundColor, border, color, cursor, width, height, textAlign) {
+  function Css(backgroundColor, border, color, cursor, display, height, marginRight, marginTop, padding, textAlign, width) {
     if (backgroundColor === void 0)
       backgroundColor = null;
     if (border === void 0)
@@ -101,19 +101,31 @@ var kobx = function (_, Kotlin) {
       color = null;
     if (cursor === void 0)
       cursor = null;
-    if (width === void 0)
-      width = null;
+    if (display === void 0)
+      display = null;
     if (height === void 0)
       height = null;
+    if (marginRight === void 0)
+      marginRight = null;
+    if (marginTop === void 0)
+      marginTop = null;
+    if (padding === void 0)
+      padding = null;
     if (textAlign === void 0)
       textAlign = null;
+    if (width === void 0)
+      width = null;
     this.backgroundColor = backgroundColor;
     this.border = border;
     this.color = color;
     this.cursor = cursor;
-    this.width = width;
+    this.display = display;
     this.height = height;
+    this.marginRight = marginRight;
+    this.marginTop = marginTop;
+    this.padding = padding;
     this.textAlign = textAlign;
+    this.width = width;
   }
   Css.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -265,6 +277,9 @@ var kobx = function (_, Kotlin) {
     React.Component.call(this);
     mobxReact.observer(this);
   }
+  function BackgroundPicker$render$lambda$lambda() {
+    this.text_61zpoe$('BackgroundPicker');
+  }
   function BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color) {
     return function () {
       store.backgroundColor = closure$color;
@@ -276,16 +291,17 @@ var kobx = function (_, Kotlin) {
         this.d_kj89xv$('span', mapOf(to('dangerouslySetInnerHTML', mapOf(to('__html', '&rarr; ')))));
       }
       var tmp$ = this.d_16rng9$.bind(this);
+      var tmp$_0 = to('className', 'btn btn-default');
       var $receiver = new Css(closure$color, void 0, void 0, Cursor$pointer_getInstance());
       if (closure$isSelected) {
         $receiver.border = 0;
         $receiver.backgroundColor = 'inherit';
         $receiver.color = 'black';
       }
-      tmp$('button', mapOf_0([to('style', $receiver), to('onClick', mobx.action(BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color))), to('disabled', closure$isSelected)]), [closure$color]);
+      tmp$('button', mapOf_0([tmp$_0, to('style', $receiver), to('onClick', mobx.action(BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color))), to('disabled', closure$isSelected)]), [closure$color]);
     };
   }
-  function BackgroundPicker$render$lambda$lambda() {
+  function BackgroundPicker$render$lambda$lambda_0() {
     var tmp$;
     tmp$ = BackgroundPicker$Companion_getInstance().colors.iterator();
     while (tmp$.hasNext()) {
@@ -295,10 +311,10 @@ var kobx = function (_, Kotlin) {
     }
   }
   function BackgroundPicker$render$lambda() {
-    this.d_kj89xv$('ul', void 0, BackgroundPicker$render$lambda$lambda);
+    this.d_kj89xv$('h3', void 0, BackgroundPicker$render$lambda$lambda);
+    this.d_kj89xv$('ul', mapOf(to('className', 'list-inline')), BackgroundPicker$render$lambda$lambda_0);
   }
   BackgroundPicker.prototype.render = function () {
-    Kotlin.println('render');
     return d('div', void 0, BackgroundPicker$render$lambda);
   };
   function BackgroundPicker$Companion() {
@@ -329,18 +345,30 @@ var kobx = function (_, Kotlin) {
     mobxReact.observer(this);
   }
   function Clock$render$lambda$lambda() {
+    this.text_61zpoe$('Clock');
+  }
+  function Clock$render$lambda$lambda_0() {
+    this.text_61zpoe$('Milliseconds since epoch: ');
+    this.d_16rng9$('code', null, [store.millisSinceEpoch.toString()]);
+    this.text_61zpoe$(' (@computed property)');
+  }
+  function Clock$render$lambda$lambda_1() {
+    this.text_61zpoe$('The time is ');
+    this.d_16rng9$('code', null, [store.now.toString()]);
+    this.text_61zpoe$(' (@observable property) ');
+  }
+  function Clock$render$lambda$lambda_2() {
     store.now = new Date();
   }
-  function Clock$render$lambda(closure$now) {
-    return function () {
-      this.d_16rng9$('p', null, ['Since epoch: ' + store.millisSinceEpoch]);
-      this.d_16rng9$('span', null, ['time is ' + closure$now + ' ']);
-      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Clock$render$lambda$lambda))), ['Update to now']);
-    };
+  function Clock$render$lambda() {
+    this.d_kj89xv$('h3', void 0, Clock$render$lambda$lambda);
+    this.d_kj89xv$('p', void 0, Clock$render$lambda$lambda_0);
+    this.d_kj89xv$('span', void 0, Clock$render$lambda$lambda_1);
+    this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Clock$render$lambda$lambda_2)), to('className', 'btn btn-default')]), ['Update to now']);
   }
   Clock.prototype.render = function () {
     var now = store.now;
-    return d('div', void 0, Clock$render$lambda(now));
+    return d('div', void 0, Clock$render$lambda);
   };
   Clock.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -439,46 +467,44 @@ var kobx = function (_, Kotlin) {
     mobxReact.observer(this);
     this.selectedTab = mobx.observable(TabName$TabA_getInstance());
   }
-  function Tabs$renderTab$lambda$lambda(this$Tabs, closure$tab) {
+  function Tabs$renderTab$lambda(this$Tabs, closure$tab) {
     return function () {
       this$Tabs.selectedTab.set(closure$tab);
     };
   }
-  function Tabs$renderTab$lambda$lambda_0(closure$tab, closure$isSelected) {
+  function Tabs$renderTab$lambda_0(closure$tab) {
     return function () {
       this.text_61zpoe$(closure$tab.prettyName);
-      if (closure$isSelected) {
-        this.text_61zpoe$(' (Selected)');
-      }
     };
   }
-  function Tabs$renderTab$lambda(this$Tabs, closure$tab, closure$isSelected) {
-    return function () {
-      this.d_kj89xv$('button', mapOf(to('onClick', mobx.action(Tabs$renderTab$lambda$lambda(this$Tabs, closure$tab)))), Tabs$renderTab$lambda$lambda_0(closure$tab, closure$isSelected));
-    };
-  }
-  Tabs.prototype.renderTab_3cf6xz$ = function (tab, isSelected) {
-    return d('div', void 0, Tabs$renderTab$lambda(this, tab, isSelected));
+  Tabs.prototype.renderTab_uixppc$ = function (tab) {
+    return d('a', mapOf_0([to('onClick', mobx.action(Tabs$renderTab$lambda(this, tab))), to('href', 'javascript:void(0)')]), Tabs$renderTab$lambda_0(tab));
   };
+  function Tabs$render$lambda$lambda() {
+    this.text_61zpoe$('TabList');
+  }
   function Tabs$render$lambda$lambda$lambda$lambda(closure$tab, this$Tabs) {
     return function () {
-      this.d_3d1yi4$(this$Tabs.renderTab_3cf6xz$(closure$tab, closure$tab === this$Tabs.selectedTab.get()));
+      this.d_3d1yi4$(this$Tabs.renderTab_uixppc$(closure$tab));
     };
   }
-  function Tabs$render$lambda$lambda(this$Tabs) {
+  function Tabs$render$lambda$lambda_0(this$Tabs) {
     return function () {
       var $receiver = TabName$values();
       var tmp$;
       for (tmp$ = 0; tmp$ !== $receiver.length; ++tmp$) {
         var element = $receiver[tmp$];
-        this.d_kj89xv$('li', void 0, Tabs$render$lambda$lambda$lambda$lambda(element, this$Tabs));
+        var this$Tabs_0 = this$Tabs;
+        var isSelected = element === this$Tabs_0.selectedTab.get();
+        this.d_kj89xv$('li', mapOf(to('className', isSelected ? 'active' : '')), Tabs$render$lambda$lambda$lambda$lambda(element, this$Tabs_0));
       }
     };
   }
   function Tabs$render$lambda(this$Tabs) {
     return function () {
       var tmp$;
-      this.d_kj89xv$('ul', void 0, Tabs$render$lambda$lambda(this$Tabs));
+      this.d_kj89xv$('h3', void 0, Tabs$render$lambda$lambda);
+      this.d_kj89xv$('ul', mapOf(to('className', 'nav nav-tabs')), Tabs$render$lambda$lambda_0(this$Tabs));
       tmp$ = this$Tabs.selectedTab.get();
       if (Kotlin.equals(tmp$, TabName$TabA_getInstance()))
         this.d_nxr5h6$(get_js(Kotlin.getKClass(TabA)));
@@ -524,15 +550,15 @@ var kobx = function (_, Kotlin) {
   }
   function Counter$render$lambda(this$Counter, closure$value) {
     return function () {
-      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Counter$render$lambda$lambda(this$Counter)))), ['-']);
-      this.text_61zpoe$(closure$value.toString());
-      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(Counter$render$lambda$lambda_0(this$Counter)))), ['+']);
+      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda$lambda(this$Counter))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['-1']);
+      this.text_61zpoe$(' ' + closure$value.toString() + ' ');
+      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda$lambda_0(this$Counter))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['+1']);
     };
   }
   Counter.prototype.render = function () {
     Kotlin.println('[Counter#render] count = ' + this.count.get() + ', key = ' + this.key);
     var value = this.count.get();
-    return d('div', void 0, Counter$render$lambda(this, value));
+    return d('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, 'inline-block'))), Counter$render$lambda(this, value));
   };
   Counter.prototype.componentDidMount = function () {
     Kotlin.println('Counter ' + this.key + ' did mount');
@@ -580,9 +606,14 @@ var kobx = function (_, Kotlin) {
       this.d_kj89xv$('small', void 0, CounterList$render$lambda$lambda$lambda(this$CounterList));
     };
   }
-  function CounterList$render$lambda$lambda_0(this$CounterList) {
+  function CounterList$render$lambda$lambda$lambda_0(this$CounterList) {
     return function () {
       this$CounterList.addCounter();
+    };
+  }
+  function CounterList$render$lambda$lambda_0(this$CounterList) {
+    return function () {
+      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda_0(this$CounterList))), to('className', 'btn btn-success')]), ['Add Counter']);
     };
   }
   function CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter) {
@@ -590,27 +621,28 @@ var kobx = function (_, Kotlin) {
       this$CounterList.counters.remove(closure$counter);
     };
   }
-  function CounterList$render$lambda$lambda$lambda$lambda(closure$counter, this$CounterList) {
+  function CounterList$render$lambda$lambda$lambda$lambda(this$CounterList, closure$counter) {
     return function () {
+      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter))), to('className', 'btn btn-danger btn-xs'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, '20px'))]), ['Delete']);
+      this.text_61zpoe$(' ');
       this.d_3d1yi4$(closure$counter.render());
-      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter)))), ['Delete']);
     };
   }
-  function CounterList$render$lambda$lambda$lambda_0(this$CounterList) {
+  function CounterList$render$lambda$lambda$lambda_1(this$CounterList) {
     return function (counter) {
-      return node('li', mapOf(to('key', counter.key)), CounterList$render$lambda$lambda$lambda$lambda(counter, this$CounterList));
+      return node('li', mapOf_0([to('key', counter.key), to('className', 'list-group-item')]), CounterList$render$lambda$lambda$lambda$lambda(this$CounterList, counter));
     };
   }
   function CounterList$render$lambda$lambda_1(this$CounterList) {
     return function () {
-      this.ds_9mqe4v$(this$CounterList.counters.map(CounterList$render$lambda$lambda$lambda_0(this$CounterList)));
+      this.ds_9mqe4v$(this$CounterList.counters.map(CounterList$render$lambda$lambda$lambda_1(this$CounterList)));
     };
   }
   function CounterList$render$lambda(this$CounterList) {
     return function () {
       this.d_kj89xv$('h3', void 0, CounterList$render$lambda$lambda(this$CounterList));
-      this.d_16rng9$('button', mapOf(to('onClick', mobx.action(CounterList$render$lambda$lambda_0(this$CounterList)))), ['Add Counter']);
-      this.d_kj89xv$('ul', void 0, CounterList$render$lambda$lambda_1(this$CounterList));
+      this.d_kj89xv$('p', void 0, CounterList$render$lambda$lambda_0(this$CounterList));
+      this.d_kj89xv$('ul', mapOf(to('className', 'list-group')), CounterList$render$lambda$lambda_1(this$CounterList));
     };
   }
   CounterList.prototype.render = function () {
@@ -639,7 +671,7 @@ var kobx = function (_, Kotlin) {
     this.d_kj89xv$('p', void 0, App$render$lambda$lambda$lambda);
   }
   function App$render$lambda() {
-    this.d_kj89xv$('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, 'right'))), App$render$lambda$lambda);
+    this.d_kj89xv$('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, '25px', void 0, 'right'))), App$render$lambda$lambda);
     this.d_kj89xv$('hr');
     this.d_nxr5h6$(get_js(Kotlin.getKClass(BackgroundPicker)));
     this.d_kj89xv$('hr');
@@ -650,7 +682,8 @@ var kobx = function (_, Kotlin) {
     this.d_nxr5h6$(get_js(Kotlin.getKClass(CounterList)));
   }
   App.prototype.render = function () {
-    return d('div', mapOf(to('style', new Css(store.backgroundColor))), App$render$lambda);
+    var style = new Css(store.backgroundColor, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '20px');
+    return d('div', mapOf(to('style', style)), App$render$lambda);
   };
   App.$metadata$ = {
     type: Kotlin.TYPE.CLASS,

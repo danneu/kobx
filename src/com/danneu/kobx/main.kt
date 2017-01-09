@@ -32,9 +32,11 @@ class BackgroundPicker : Component() {
     init { observer(this) }
 
     override fun render(): ReactElement {
-        println("render")
         return d("div") {
-            d("ul") {
+            d("h3") {
+                text("BackgroundPicker")
+            }
+            d("ul", mapOf("className" to "list-inline")) {
                 colors.forEach { color ->
                     val isSelected = store.backgroundColor == color
                     d("li") {
@@ -42,6 +44,7 @@ class BackgroundPicker : Component() {
                             d("span", mapOf("dangerouslySetInnerHTML" to mapOf("__html" to "&rarr; ")))
                         }
                         d("button", mapOf(
+                            "className" to "btn btn-default",
                             "style" to Css(
                                 cursor = pointer,
                                 backgroundColor = color
@@ -72,9 +75,23 @@ class Clock : Component() {
     override fun render(): ReactElement {
         val now = store.now
         return d("div") {
-            d("p", null, "Since epoch: ${store.millisSinceEpoch}")
-            d("span", null, "time is $now ")
-            d("button", mapOf("onClick" to action { store.now = Date() }), "Update to now")
+            d("h3") {
+                text("Clock")
+            }
+            d("p") {
+                text("Milliseconds since epoch: ")
+                d("code", null, store.millisSinceEpoch.toString())
+                text(" (@computed property)")
+            }
+            d("span") {
+                text("The time is ")
+                d("code", null, store.now.toString())
+                text(" (@observable property) ")
+            }
+            d("button", mapOf(
+                "onClick" to action { store.now = Date() },
+                "className" to "btn btn-default"
+            ), "Update to now")
         }
     }
 }
@@ -97,20 +114,22 @@ class Tabs : Component() {
 
     val selectedTab = observable(TabName.TabA)
 
-    fun renderTab(tab: TabName, isSelected: Boolean): ReactElement = d("div") {
-        d("button", mapOf("onClick" to action { selectedTab.set(tab) }))  {
-            text(tab.prettyName)
-            if (isSelected) {
-                text(" (Selected)")
-            }
-        }
+    fun renderTab(tab: TabName): ReactElement = d("a", mapOf(
+        "onClick" to action { selectedTab.set(tab) },
+        "href" to "javascript:void(0)"
+    ))  {
+        text(tab.prettyName)
     }
 
     override fun render(): ReactElement = d("div") {
-        d("ul") {
+        d("h3") {
+            text("TabList")
+        }
+        d("ul", mapOf("className" to "nav nav-tabs")) {
             TabName.values().forEach { tab ->
-                d("li") {
-                    d(renderTab(tab, isSelected = tab == selectedTab.get()))
+                val isSelected = tab == selectedTab.get()
+                d("li", mapOf("className" to (if (isSelected) "active" else ""))) {
+                    d(renderTab(tab))
                 }
             }
         }
@@ -136,10 +155,18 @@ class Counter : Component(), DidMount {
     override fun render(): ReactElement {
         println("[Counter#render] count = ${count.get()}, key = $key")
         val value = count.get()
-        return d("div") {
-            d("button", mapOf("onClick" to action { decrement() }), "-")
-            text(value.toString())
-            d("button", mapOf("onClick" to action { increment() }), "+")
+        return d("div", mapOf("style" to Css(display = "inline-block"))) {
+            d("button", mapOf(
+                "onClick" to action { decrement() },
+                "className" to "btn btn-xs btn-default",
+                "style" to Css(width = "50px")
+            ), "-1")
+            text(" " + value.toString() + " ")
+            d("button", mapOf(
+                "onClick" to action { increment() },
+                "className" to "btn btn-xs btn-default",
+                "style" to Css(width = "50px")
+            ), "+1")
         }
     }
 
@@ -166,44 +193,66 @@ class CounterList : Component() {
                     text(" Counters: ${counters.length}")
                 }
             }
-            d("button", mapOf("onClick" to action { addCounter() }), "Add Counter")
-            d("ul") {
+            d("p") {
+                d("button", mapOf("onClick" to action { addCounter() }, "className" to "btn btn-success"), "Add Counter")
+            }
+            d("ul", mapOf("className" to "list-group")) {
                 // TODO: Get this working
                 ds(counters.map { counter ->
-                    node("li", mapOf("key" to counter.key)) {
+                    node("li", mapOf(
+                        "key" to counter.key,
+                        "className" to "list-group-item"
+                    )) {
+                        d("button", mapOf(
+                            "onClick" to action { counters.remove(counter) },
+                            "className" to "btn btn-danger btn-xs",
+                            "style" to Css(marginRight = "20px")
+                        ), "Delete")
+                        text(" ")
                         // FIXME: Re-renders each time. Figure out how to support `components.map { d(component) }`
                         d(counter.render())
-                        d("button", mapOf("onClick" to action { counters.remove(counter) }), "Delete")
                     }
                 })
             }
         }
     }
 }
+//<ul class="list-group">
+//  <li class="list-group-item">Cras justo odio</li>
+//  <li class="list-group-item">Dapibus ac facilisis in</li>
+//  <li class="list-group-item">Morbi leo risus</li>
+//  <li class="list-group-item">Porta ac consectetur ac</li>
+//  <li class="list-group-item">Vestibulum at eros</li>
+//</ul>
 
 
 class App : Component() {
     init { observer(this) }
-    override fun render(): ReactElement = d("div", mapOf("style" to Css(backgroundColor = store.backgroundColor))) {
-        d("div", mapOf("style" to Css(textAlign = "right"))) {
-            d("p") {
-                text("Source: ")
-                d("a", mapOf("href" to "https://github.com/danneu/kobx"), "github.com/danneu/kobx")
-                text(" – A demonstration of ")
-                d("a", mapOf("href" to "https://github.com/mobxjs/mobx", "target" to "_blank"), "MobX")
-                text(" + ")
-                d("a", mapOf("href" to "https://facebook.github.io/react/", "target" to "_blank"), "React")
-                text(" components written in Kotlin, compiled to Javascript")
+
+    override fun render(): ReactElement {
+        val style = Css(backgroundColor = store.backgroundColor, padding = "20px")
+
+        return d("div", mapOf("style" to style)) {
+            d("div", mapOf("style" to Css(textAlign = "right", marginTop = "25px"))) {
+                d("p") {
+                    text("Source: ")
+                    d("a", mapOf("href" to "https://github.com/danneu/kobx"), "github.com/danneu/kobx")
+                    text(" – A demonstration of ")
+                    d("a", mapOf("href" to "https://github.com/mobxjs/mobx", "target" to "_blank"), "MobX")
+                    text(" + ")
+                    d("a", mapOf("href" to "https://facebook.github.io/react/", "target" to "_blank"), "React")
+                    text(" components written in Kotlin, compiled to Javascript")
+                }
             }
+            d("hr")
+            d(BackgroundPicker::class.js)
+            d("hr")
+            d(Clock::class.js)
+            d("hr")
+            d(Tabs::class.js)
+            d("hr")
+            d(CounterList::class.js)
         }
-        d("hr")
-        d(BackgroundPicker::class.js)
-        d("hr")
-        d(Clock::class.js)
-        d("hr")
-        d(Tabs::class.js)
-        d("hr")
-        d(CounterList::class.js)
     }
 }
 
