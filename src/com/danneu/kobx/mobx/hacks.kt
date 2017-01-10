@@ -1,27 +1,30 @@
 package com.danneu.kobx.mobx
 
+import com.danneu.kobx.js.Object
+import com.danneu.kobx.js.objectOf
+
 
 /**
- * FIXME: Yyyikes.
- *
- * This interface exists for observables (stores) to call activate(),
+ * This interface exists for observables (stores) to call `init { activate() }`,
  * injecting the mobx interop into their class during initialization.
+ * Must be called after all observable properties and computer getters are defined,
+ * else it won't see them.
  *
  * Would be cool to have mobx's @observable, @computed, etc., but kotlin
  * doesn't yet support annotation reflection in javascript.
  */
 interface Observable {
     fun activate() {
-        js("""
-            var self = this
+        val props = Object.getOwnPropertyDescriptors(this)
 
-            var obj = Object.getOwnPropertyDescriptors(this)
-            Object.keys(obj).forEach(function (key) {
-                var mapping = {}
-                mapping[key] = obj[key].value
-                console.log('key is: "', key, '" , value is:', obj[key].value, 'mapping is', mapping)
-                mobx.extendObservable(self, mapping)
-            })
-        """)
+        Object.keys(props)
+            // Skip internal mobx functions
+            .filter { key -> key[0] != '$' }
+            .forEach { key ->
+                val value = props[key].value
+                val mapping = objectOf(key to value)
+                println("key = $key, value = $value, mapping = ${JSON.stringify(mapping)})")
+                extendObservable(this, mapping)
+            }
     }
 }

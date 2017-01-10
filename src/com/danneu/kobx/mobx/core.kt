@@ -2,14 +2,8 @@ package com.danneu.kobx.mobx
 
 import com.danneu.kobx.react.Component
 
-// TODO: Which version of mobx am I on?
-
 @JsName("mobxReact.observer")
-external fun observer(component: Component)
-@JsName("mobxReact.observer")
-external fun observer(jsClass: JsClass<*>): JsClass<*>
-@JsName("mobxReact.observer")
-external fun observer(obj: dynamic): dynamic
+external fun observer(component: Component): Component
 
 @JsName("mobx.observable")
 external fun observable(value: String): ObservableBox<String>
@@ -38,10 +32,14 @@ external class ObservableBox <T> {
 
 @JsName("ObservableArray")
 external class ObservableArray <A> {
+    // Javascript array methods
+
     fun push(item: A)
     val length: Int
     fun <B> map(xform: (A) -> B): Array<B>
     fun forEach(process: (A) -> Unit)
-    // mobx
+
+    // Mobx's array extensions
+
     fun remove(value: A): Boolean
 }

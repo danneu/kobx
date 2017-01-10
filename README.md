@@ -21,8 +21,7 @@ Clicking the time also updates the store.
 import com.danneu.kobx.mobx.Observable
 import com.danneu.kobx.mobx.action
 import com.danneu.kobx.react.Component
-import com.danneu.kobx.react.ReactDOM
-import com.danneu.kobx.react.ReactElement
+import com.danneu.kobx.react.VNode
 import kotlin.browser.document
 import kotlin.browser.window
 
@@ -39,7 +38,7 @@ class Store : Observable {
     val millisSinceEpoch: Int 
         get() = now.getTime()
         
-    // Stupid hack to generate the mobx boilerplate.
+    // activate() converts the class' props to observables.
     // Must come after the properties are defined.
     init { activate() }
 }
@@ -51,15 +50,15 @@ val store = Store()
 
 class Clock : Component() {
     // Upgrade component into observer which is what
-    // hooks render() dereferences up to the store
+    // hooks re-render() up to observable changes.
     init { observer(this) }
     
     // By dereferencing `store.now` in render(), render()
     // observes the time and will re-render when `store.now` changes.
-    override fun render(): ReactElement {
-        return d("span", mapOf("onClick" to action { store.now = Date() })) {
-            text(store.now.toString())
-        }
+    override fun render(): VNode {
+        return h("span", mapOf(
+            "onClick" to action { store.now = Date() }
+        ), store.now.toString())
     }
 }
 

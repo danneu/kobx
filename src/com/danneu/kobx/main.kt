@@ -7,9 +7,10 @@ import com.danneu.kobx.mobx.observer
 import com.danneu.kobx.mobx.observable
 import com.danneu.kobx.react.Component
 import com.danneu.kobx.react.DidMount
-import com.danneu.kobx.react.React
-import com.danneu.kobx.react.ReactDOM
-import com.danneu.kobx.react.ReactElement
+import com.danneu.kobx.react.DidUpdate
+import com.danneu.kobx.react.VNode
+import com.danneu.kobx.react.h
+import com.danneu.kobx.react.render
 import kotlin.browser.document
 import kotlin.browser.window
 
@@ -17,7 +18,8 @@ import kotlin.browser.window
 class Store : Observable {
     // @observable properties
     var backgroundColor = "white"
-    var now: Date = Date()
+    var now = Date()
+    var count = 0
 
     // @computed properties
     val millisSinceEpoch: Int
@@ -28,22 +30,21 @@ class Store : Observable {
 
 val store = Store()
 
+
 class BackgroundPicker : Component() {
     init { observer(this) }
 
-    override fun render(): ReactElement {
-        return d("div") {
-            d("h3") {
-                text("BackgroundPicker")
-            }
-            d("ul", mapOf("className" to "list-inline")) {
-                colors.forEach { color ->
+    override fun render(): VNode {
+        return h("div", null,
+            h("h3", null, "BackgroundPicker"),
+            h("ul", mapOf("className" to "list-inline"),
+                colors.map { color ->
                     val isSelected = store.backgroundColor == color
-                    d("li") {
+                    h("li", mapOf("key" to color),
                         if (isSelected) {
-                            d("span", mapOf("dangerouslySetInnerHTML" to mapOf("__html" to "&rarr; ")))
-                        }
-                        d("button", mapOf(
+                            h("span", mapOf("dangerouslySetInnerHTML" to mapOf("__html" to "&rarr;")))
+                        } else null,
+                        h("button", mapOf(
                             "className" to "btn btn-default",
                             "style" to Css(
                                 cursor = pointer,
@@ -58,10 +59,10 @@ class BackgroundPicker : Component() {
                             "onClick" to action { store.backgroundColor = color },
                             "disabled" to isSelected
                         ), color)
-                    }
-                }
-            }
-        }
+                    )
+                }.toTypedArray()
+            )
+        )
     }
 
     companion object {
@@ -69,190 +70,235 @@ class BackgroundPicker : Component() {
     }
 }
 
+
 class Clock : Component() {
     init { observer(this) }
 
-    override fun render(): ReactElement {
-        val now = store.now
-        return d("div") {
-            d("h3") {
-                text("Clock")
-            }
-            d("p") {
-                text("Milliseconds since epoch: ")
-                d("code", null, store.millisSinceEpoch.toString())
-                text(" (@computed property)")
-            }
-            d("span") {
-                text("The time is ")
-                d("code", null, store.now.toString())
-                text(" (@observable property) ")
-            }
-            d("button", mapOf(
+    override fun render(): VNode {
+        return h("div", null,
+            h("h3", null, "Clock"),
+            h("p", null,
+                "Milliseconds since epoch: ",
+                h("code", null, store.millisSinceEpoch.toString()),
+                " (@computed property)"
+            ),
+            h("span", null,
+                "The time is ",
+                h("code", null, store.now.toString()),
+                " (@observable property) "
+            ),
+            h("button", mapOf(
                 "onClick" to action { store.now = Date() },
                 "className" to "btn btn-default"
             ), "Update to now")
-        }
+        )
     }
 }
 
+enum class Tab(val prettyName: String) { TabA("Tab A"), TabB("Tab B"), TabC("Tab C") }
 
-enum class TabName(val prettyName: String) { TabA("Tab A"), TabB("Tab B"), TabC("Tab C") }
-
-class TabA : Component() {
-    override fun render(): ReactElement = d("div", null, "TabA Component")
+class TabAContent : Component() {
+    override fun render() = h("div", null, "TabA Component")
 }
-class TabB : Component() {
-    override fun render(): ReactElement = d("div", null, "TabB Component")
+class TabBContent : Component() {
+    override fun render() = h("div", null, "TabB Component")
 }
-class TabC : Component() {
-    override fun render(): ReactElement = d("div", null, "TabC Component")
+class TabCContent : Component() {
+    override fun render() = h("div", null, "TabC Component")
 }
 
 class Tabs : Component() {
     init { observer(this) }
 
-    val selectedTab = observable(TabName.TabA)
+    val selectedTab = observable(Tab.TabA)
 
-    fun renderTab(tab: TabName): ReactElement = d("a", mapOf(
+    fun renderTab(tab: Tab) = h("a", mapOf(
         "onClick" to action { selectedTab.set(tab) },
         "href" to "javascript:void(0)"
-    ))  {
-        text(tab.prettyName)
+    ), tab.prettyName)
+
+    // Got compiler crash when I inlined the when() expression
+    fun renderSelectedTabContent(selectedTab: Tab): VNode {
+        return when (selectedTab) {
+            Tab.TabA ->
+                h(TabAContent::class.js)
+            Tab.TabB ->
+                h(TabBContent::class.js)
+            Tab.TabC ->
+                h(TabCContent::class.js)
+        }
     }
 
-    override fun render(): ReactElement = d("div") {
-        d("h3") {
-            text("TabList")
-        }
-        d("ul", mapOf("className" to "nav nav-tabs")) {
-            TabName.values().forEach { tab ->
+    override fun render() = h("div", null,
+        h("h3", null, "TabList"),
+        h("ul", mapOf("className" to "nav nav-tabs"),
+            Tab.values().map { tab ->
                 val isSelected = tab == selectedTab.get()
-                d("li", mapOf("className" to (if (isSelected) "active" else ""))) {
-                    d(renderTab(tab))
-                }
+                h("li", mapOf(
+                    "className" to (if (isSelected) "active" else ""),
+                    "key" to tab.name
+                ),
+                    renderTab(tab)
+                )
             }
-        }
-        when (selectedTab.get()) {
-            TabName.TabA ->
-                d(TabA::class.js)
-            TabName.TabB ->
-                d(TabB::class.js)
-            TabName.TabC ->
-                d(TabC::class.js)
-        }
-    }
-
+        ),
+        renderSelectedTabContent(selectedTab.get())
+    )
 }
+
 
 class Counter : Component(), DidMount {
     init { observer(this) }
+
     val count = observable(0)
     val key = ++Companion.key
+
     fun increment() { count.set(count.get() + 1) }
     fun decrement() { count.set(count.get() - 1) }
 
-    override fun render(): ReactElement {
+    override fun render(): VNode {
         println("[Counter#render] count = ${count.get()}, key = $key")
         val value = count.get()
-        return d("div", mapOf("style" to Css(display = "inline-block"))) {
-            d("button", mapOf(
+        return h("div", mapOf("style" to Css(display = "inline-block")),
+            h("button", mapOf(
                 "onClick" to action { decrement() },
                 "className" to "btn btn-xs btn-default",
                 "style" to Css(width = "50px")
-            ), "-1")
-            text(" " + value.toString() + " ")
-            d("button", mapOf(
+            ), "-1"),
+            " $value ",
+            h("button", mapOf(
                 "onClick" to action { increment() },
                 "className" to "btn btn-xs btn-default",
                 "style" to Css(width = "50px")
             ), "+1")
-        }
+        )
     }
 
-    override fun componentDidMount() {
-        println("Counter $key did mount")
-    }
+    // FIXME: didMount will not fire since react isn't given control of this. Need to figure this out.
+    override fun componentDidMount() = println("Counter $key did mount")
 
     companion object {
-        var key = 0
+        private var key = 0
+        fun nextKey() = ++key
     }
+}
+
+
+// Experimenting with () -> Component
+fun Counter2(): Component {
+    val count = observable(0)
+
+    fun increment() { count.set(count.get() + 1) }
+    fun decrement() { count.set(count.get() - 1) }
+
+    return observer(object : Component() {
+        override fun render(): VNode {
+            println("[Counter2] rendering, ${count.get()}")
+            return h("div", mapOf("style" to Css(display = "inline-block")),
+                h("button", mapOf(
+                    "onClick" to action { decrement() },
+                    "className" to "btn btn-xs btn-default",
+                    "style" to Css(width = "50px")
+                ), "-1"),
+                " ${count.get()} ",
+                h("button", mapOf(
+                    "onClick" to action { increment() },
+                    "className" to "btn btn-xs btn-default",
+                    "style" to Css(width = "50px")
+                ), "+1")
+            )
+        }
+    })
 }
 
 class CounterList : Component() {
     init { observer(this) }
-    val counters = observable(listOf(Counter()))
 
-    fun addCounter() = counters.push(Counter())
+    //val counters = observable(listOf(Counter()))
+    val counters = observable(listOf(Counter.nextKey() to Counter2()))
 
-    override fun render(): ReactElement {
-        return d("div") {
-            d("h3") {
-                text("CounterList")
-                d("small") {
-                    text(" Counters: ${counters.length}")
-                }
-            }
-            d("p") {
-                d("button", mapOf("onClick" to action { addCounter() }, "className" to "btn btn-success"), "Add Counter")
-            }
-            d("ul", mapOf("className" to "list-group")) {
-                // TODO: Get this working
-                ds(counters.map { counter ->
-                    node("li", mapOf(
-                        "key" to counter.key,
-                        "className" to "list-group-item"
-                    )) {
-                        d("button", mapOf(
-                            "onClick" to action { counters.remove(counter) },
+    fun addCounter() = counters.push(Counter.nextKey() to Counter2())
+
+    override fun render(): VNode {
+        return h("div", null,
+            h("h3", null, "CounterList",
+                h("small", null, " Counters: ${counters.length}")
+            ),
+            h("p", null,
+                h("button", mapOf(
+                    "onClick" to action { addCounter() },
+                    "className" to "btn btn-success"
+                ), "Add Counter")
+            ),
+            h("ul", mapOf("className" to "list-group"),
+                counters.map { pair ->
+                    val (key, counter) = pair
+                    h("li", mapOf("key" to key, "className" to "list-group-item"),
+                        h("button", mapOf(
+                            "onClick" to action { counters.remove(pair) },
                             "className" to "btn btn-danger btn-xs",
                             "style" to Css(marginRight = "20px")
-                        ), "Delete")
-                        text(" ")
+                        ), "Delete"),
+                        " ",
                         // FIXME: Re-renders each time. Figure out how to support `components.map { d(component) }`
-                        d(counter.render())
-                    }
-                })
-            }
-        }
+                        counter.render()
+                    )
+                }
+            )
+        )
     }
 }
-//<ul class="list-group">
-//  <li class="list-group-item">Cras justo odio</li>
-//  <li class="list-group-item">Dapibus ac facilisis in</li>
-//  <li class="list-group-item">Morbi leo risus</li>
-//  <li class="list-group-item">Porta ac consectetur ac</li>
-//  <li class="list-group-item">Vestibulum at eros</li>
-//</ul>
+
+// I tried Preact briefly, but switched back to React when I couldn't figure out why this Foo component
+// was always firing didUpdate twice per update. Without any changes to the code, React only fired once.
+class Foo : Component(), DidMount, DidUpdate {
+    init { observer(this) }
+
+    override fun render(): VNode {
+        return h("button", mapOf("onClick" to action { store.count += 1 }), store.count.toString())
+    }
+
+    override fun componentDidMount() {
+        println("Foo did mount")
+    }
+
+    override fun componentDidUpdate() {
+        println("Foo did update")
+    }
+}
 
 
 class App : Component() {
     init { observer(this) }
 
-    override fun render(): ReactElement {
+    override fun render(): VNode {
         val style = Css(backgroundColor = store.backgroundColor, padding = "20px")
 
-        return d("div", mapOf("style" to style)) {
-            d("div", mapOf("style" to Css(textAlign = "right", marginTop = "25px"))) {
-                d("p") {
-                    text("Source: ")
-                    d("a", mapOf("href" to "https://github.com/danneu/kobx"), "github.com/danneu/kobx")
-                    text(" – A demonstration of ")
-                    d("a", mapOf("href" to "https://github.com/mobxjs/mobx", "target" to "_blank"), "MobX")
-                    text(" + ")
-                    d("a", mapOf("href" to "https://facebook.github.io/react/", "target" to "_blank"), "React")
-                    text(" components written in Kotlin, compiled to Javascript")
-                }
-            }
-            d("hr")
-            d(BackgroundPicker::class.js)
-            d("hr")
-            d(Clock::class.js)
-            d("hr")
-            d(Tabs::class.js)
-            d("hr")
-            d(CounterList::class.js)
-        }
+        return h("div", mapOf("style" to style),
+            h("div", mapOf("style" to Css(textAlign = "right", marginTop = "25px")),
+                h("p", null,
+                    "Source: ",
+                    h("a", mapOf("href" to "https://github.com/danneu/kobx"), "github.com/danneu/kobx"),
+                    " – A demonstration of ",
+                    h("a", mapOf("href" to "https://github.com/mobxjs/mobx", "target" to "_blank"), "MobX"),
+                    " + ",
+                    h("a", mapOf("href" to "https://facebook.github.io/react/", "target" to "_blank"), "React"),
+                    " components written in Kotlin, compiled to Javascript"
+                )
+            ),
+            h("hr"),
+            h(BackgroundPicker::class.js),
+            h("hr"),
+            h(Clock::class.js),
+            h("hr"),
+            h(Tabs::class.js),
+            h("hr"),
+            h(CounterList::class.js),
+            h("hr"),
+            h(Foo::class.js),
+            h(Foo::class.js),
+            h(Foo::class.js)
+        )
     }
 }
 
@@ -264,5 +310,5 @@ fun main(args: Array<String>) {
         store.now = Date()
     }), 1000)
 
-    ReactDOM.render(React.createElement(App::class.js), document.querySelector("#root")!!)
+    render(h(App::class.js), document.querySelector("#root")!!)
 }

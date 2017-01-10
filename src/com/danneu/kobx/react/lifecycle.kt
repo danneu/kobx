@@ -9,17 +9,37 @@ external interface DidMount {
     fun componentDidMount()
 }
 
-external interface DidUpdate {
-    fun componentDidUpdate()
-}
-
 external interface WillUnmount {
     fun componentWillUnmount()
 }
 
+external interface DidUnmount {
+    fun componentDidUnmount()
+}
+
+external interface WillReceiveProps {
+    fun componentWillReceiveProps()
+}
+
+external interface ShouldUpdate {
+    fun shouldComponentUpdate(): Boolean
+}
+
+external interface WillUpdate {
+    fun componentWillUpdate()
+}
+
+external interface DidUpdate {
+    fun componentDidUpdate()
+}
 
 external interface Lifecycle :
     WillMount,
     DidMount,
-    DidUpdate,
-    WillUnmount
+    WillUnmount,
+    DidUnmount,
+    WillReceiveProps,
+    ShouldUpdate,
+    WillUpdate,
+    DidUpdate
+

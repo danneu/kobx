@@ -4,8 +4,6 @@ if (typeof kotlin === 'undefined') {
 var kobx = function (_, Kotlin) {
   'use strict';
   var Enum = Kotlin.kotlin.Enum;
-  var toMutableList = Kotlin.kotlin.collections.toMutableList_eg9ybj$;
-  var emptyList = Kotlin.kotlin.collections.emptyList;
   var to = Kotlin.kotlin.to_l1ob02$;
   var mapOf = Kotlin.kotlin.collections.mapOf_dvvt93$;
   var mapOf_0 = Kotlin.kotlin.collections.mapOf_eoa9s7$;
@@ -13,26 +11,31 @@ var kobx = function (_, Kotlin) {
   var get_js = Kotlin.kotlin.js.get_js_t5ir34$;
   var listOf_0 = Kotlin.kotlin.collections.listOf_za3rmp$;
   var Map = Kotlin.kotlin.collections.Map;
+  var List = Kotlin.kotlin.collections.List;
   Cursor.prototype = Object.create(Enum.prototype);
   Cursor.prototype.constructor = Cursor;
   BackgroundPicker.prototype = Object.create(React.Component.prototype);
   BackgroundPicker.prototype.constructor = BackgroundPicker;
   Clock.prototype = Object.create(React.Component.prototype);
   Clock.prototype.constructor = Clock;
-  TabName.prototype = Object.create(Enum.prototype);
-  TabName.prototype.constructor = TabName;
-  TabA.prototype = Object.create(React.Component.prototype);
-  TabA.prototype.constructor = TabA;
-  TabB.prototype = Object.create(React.Component.prototype);
-  TabB.prototype.constructor = TabB;
-  TabC.prototype = Object.create(React.Component.prototype);
-  TabC.prototype.constructor = TabC;
+  Tab.prototype = Object.create(Enum.prototype);
+  Tab.prototype.constructor = Tab;
+  TabAContent.prototype = Object.create(React.Component.prototype);
+  TabAContent.prototype.constructor = TabAContent;
+  TabBContent.prototype = Object.create(React.Component.prototype);
+  TabBContent.prototype.constructor = TabBContent;
+  TabCContent.prototype = Object.create(React.Component.prototype);
+  TabCContent.prototype.constructor = TabCContent;
   Tabs.prototype = Object.create(React.Component.prototype);
   Tabs.prototype.constructor = Tabs;
   Counter.prototype = Object.create(React.Component.prototype);
   Counter.prototype.constructor = Counter;
+  Counter2$ObjectLiteral.prototype = Object.create(React.Component.prototype);
+  Counter2$ObjectLiteral.prototype.constructor = Counter2$ObjectLiteral;
   CounterList.prototype = Object.create(React.Component.prototype);
   CounterList.prototype.constructor = CounterList;
+  Foo.prototype = Object.create(React.Component.prototype);
+  Foo.prototype.constructor = Foo;
   App.prototype = Object.create(React.Component.prototype);
   App.prototype.constructor = App;
   function Cursor(name, ordinal) {
@@ -133,131 +136,10 @@ var kobx = function (_, Kotlin) {
     simpleName: 'Css',
     baseClasses: []
   };
-  function D(a, b, c) {
-    if (b === void 0)
-      b = null;
-    this.a = a;
-    this.b = b;
-    this.kids = toMutableList(c);
-  }
-  function D$d$lambda() {
-  }
-  D.prototype.d_kj89xv$ = function (tag, attrs, block) {
-    var tmp$;
-    if (attrs === void 0)
-      attrs = null;
-    if (block === void 0)
-      block = D$d$lambda;
-    var kid = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    block.call(kid);
-    var tmp$_0 = this.kids;
-    var tmp$_1 = (tmp$ = React).createElement;
-    var tmp$_2 = tmp$;
-    var tmp$_3 = [kid.a, kid.b];
-    var tmp$_4 = tmp$_3.concat.bind(tmp$_3);
-    var $receiver = kid.kids;
-    tmp$_0.add_za3rmp$(tmp$_1.apply(tmp$_2, tmp$_4(Kotlin.kotlin.collections.copyToArray($receiver))));
-  };
-  D.prototype.d_16rng9$ = function (tag, attrs, subkids) {
-    var tmp$;
-    if (attrs === void 0)
-      attrs = null;
-    this.kids.add_za3rmp$((tmp$ = React).createElement.apply(tmp$, [tag, attrs != null ? toJsObject(attrs) : null].concat(subkids)));
-  };
-  D.prototype.d_nxr5h6$ = function (jsclass) {
-    this.kids.add_za3rmp$(React.createElement(jsclass));
-  };
-  D.prototype.d_3d1yi4$ = function (el) {
-    this.kids.add_za3rmp$(el);
-  };
-  D.prototype.d_nd53m$ = function (c) {
-    this.kids.add_za3rmp$(c);
-  };
-  D.prototype.ds_rtpmmf$ = function (list) {
-    this.kids.add_za3rmp$(Kotlin.kotlin.collections.copyToArray(list));
-  };
-  D.prototype.ds_9mqe4v$ = function (array) {
-    this.kids.add_za3rmp$(array);
-  };
-  D.prototype.text_61zpoe$ = function (string) {
-    this.kids.add_za3rmp$(string);
-  };
-  D.$metadata$ = {
-    type: Kotlin.TYPE.CLASS,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'D',
-    baseClasses: []
-  };
-  function d$lambda() {
-  }
-  function d(tag, attrs, block) {
-    var tmp$;
-    if (attrs === void 0)
-      attrs = null;
-    if (block === void 0)
-      block = d$lambda;
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    block.call(root);
-    var tmp$_0 = (tmp$ = React).createElement;
-    var tmp$_1 = tmp$;
-    var tmp$_2 = [root.a, root.b];
-    var tmp$_3 = tmp$_2.concat.bind(tmp$_2);
-    var $receiver = root.kids;
-    return tmp$_0.apply(tmp$_1, tmp$_3(Kotlin.kotlin.collections.copyToArray($receiver)));
-  }
-  function node$lambda() {
-  }
-  function node(tag, attrs, block) {
-    var tmp$;
-    if (attrs === void 0)
-      attrs = null;
-    if (block === void 0)
-      block = node$lambda;
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    block.call(root);
-    var tmp$_0 = (tmp$ = React).createElement;
-    var tmp$_1 = tmp$;
-    var tmp$_2 = [root.a, root.b];
-    var tmp$_3 = tmp$_2.concat.bind(tmp$_2);
-    var $receiver = root.kids;
-    return tmp$_0.apply(tmp$_1, tmp$_3(Kotlin.kotlin.collections.copyToArray($receiver)));
-  }
-  function d_0(tag, attrs, text) {
-    if (attrs === void 0)
-      attrs = null;
-    if (text === void 0)
-      text = '';
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    return React.createElement(root.a, root.b, [text]);
-  }
-  function node_0(tag, attrs, text) {
-    if (attrs === void 0)
-      attrs = null;
-    if (text === void 0)
-      text = '';
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    return React.createElement(root.a, root.b, [text]);
-  }
-  function node_1(tag, attrs, children) {
-    if (attrs === void 0)
-      attrs = null;
-    if (children === void 0)
-      children = emptyList();
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    var tmp$ = root.a;
-    var tmp$_0 = root.b;
-    var $receiver = children;
-    return React.createElement(tmp$, tmp$_0, Kotlin.kotlin.collections.copyToArray($receiver));
-  }
-  function node_2(tag, attrs, component) {
-    if (attrs === void 0)
-      attrs = null;
-    var root = new D(tag, attrs != null ? toJsObject(attrs) : null, []);
-    return React.createElement(root.a, root.b, component);
-  }
   function Store() {
     this.backgroundColor = 'white';
     this.now = new Date();
+    this.count = 0;
     this.activate();
   }
   Object.defineProperty(Store.prototype, 'millisSinceEpoch', {
@@ -277,45 +159,39 @@ var kobx = function (_, Kotlin) {
     React.Component.call(this);
     mobxReact.observer(this);
   }
-  function BackgroundPicker$render$lambda$lambda() {
-    this.text_61zpoe$('BackgroundPicker');
-  }
-  function BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color) {
+  function BackgroundPicker$render$lambda$lambda(closure$color) {
     return function () {
       store.backgroundColor = closure$color;
     };
   }
-  function BackgroundPicker$render$lambda$lambda$lambda$lambda(closure$isSelected, closure$color) {
-    return function () {
-      if (closure$isSelected) {
-        this.d_kj89xv$('span', mapOf(to('dangerouslySetInnerHTML', mapOf(to('__html', '&rarr; ')))));
-      }
-      var tmp$ = this.d_16rng9$.bind(this);
-      var tmp$_0 = to('className', 'btn btn-default');
-      var $receiver = new Css(closure$color, void 0, void 0, Cursor$pointer_getInstance());
-      if (closure$isSelected) {
-        $receiver.border = 0;
-        $receiver.backgroundColor = 'inherit';
-        $receiver.color = 'black';
-      }
-      tmp$('button', mapOf_0([tmp$_0, to('style', $receiver), to('onClick', mobx.action(BackgroundPicker$render$lambda$lambda$lambda$lambda$lambda(closure$color))), to('disabled', closure$isSelected)]), [closure$color]);
-    };
-  }
-  function BackgroundPicker$render$lambda$lambda_0() {
-    var tmp$;
-    tmp$ = BackgroundPicker$Companion_getInstance().colors.iterator();
-    while (tmp$.hasNext()) {
-      var element = tmp$.next();
-      var isSelected = Kotlin.equals(store.backgroundColor, element);
-      this.d_kj89xv$('li', void 0, BackgroundPicker$render$lambda$lambda$lambda$lambda(isSelected, element));
-    }
-  }
-  function BackgroundPicker$render$lambda() {
-    this.d_kj89xv$('h3', void 0, BackgroundPicker$render$lambda$lambda);
-    this.d_kj89xv$('ul', mapOf(to('className', 'list-inline')), BackgroundPicker$render$lambda$lambda_0);
-  }
   BackgroundPicker.prototype.render = function () {
-    return d('div', void 0, BackgroundPicker$render$lambda);
+    var tmp$ = React.createElement('h3', null, 'BackgroundPicker');
+    var tmp$_0 = mapOf(to('className', 'list-inline'));
+    var $receiver = BackgroundPicker$Companion_getInstance().colors;
+    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$(Kotlin.kotlin.collections.collectionSizeOrDefault_0($receiver, 10));
+    var tmp$_1;
+    tmp$_1 = $receiver.iterator();
+    while (tmp$_1.hasNext()) {
+      var item = tmp$_1.next();
+      var tmp$_2 = destination.add_za3rmp$.bind(destination);
+      var tmp$_3, tmp$_4;
+      var isSelected = Kotlin.equals(store.backgroundColor, item);
+      tmp$_4 = mapOf(to('key', item));
+      if (isSelected) {
+        tmp$_3 = h('span', mapOf(to('dangerouslySetInnerHTML', mapOf(to('__html', '&rarr;')))), []);
+      }
+       else
+        tmp$_3 = null;
+      var tmp$_5 = to('className', 'btn btn-default');
+      var $receiver_1 = new Css(item, void 0, void 0, Cursor$pointer_getInstance());
+      if (isSelected) {
+        $receiver_1.border = 0;
+        $receiver_1.backgroundColor = 'inherit';
+        $receiver_1.color = 'black';
+      }
+      tmp$_2(h('li', tmp$_4, [tmp$_3, h('button', mapOf_0([tmp$_5, to('style', $receiver_1), to('onClick', mobx.action(BackgroundPicker$render$lambda$lambda(item))), to('disabled', isSelected)]), [item])]));
+    }
+    return React.createElement('div', null, tmp$, h('ul', tmp$_0, [Kotlin.kotlin.collections.copyToArray(destination)]));
   };
   function BackgroundPicker$Companion() {
     BackgroundPicker$Companion_instance = this;
@@ -344,31 +220,12 @@ var kobx = function (_, Kotlin) {
     React.Component.call(this);
     mobxReact.observer(this);
   }
-  function Clock$render$lambda$lambda() {
-    this.text_61zpoe$('Clock');
-  }
-  function Clock$render$lambda$lambda_0() {
-    this.text_61zpoe$('Milliseconds since epoch: ');
-    this.d_16rng9$('code', null, [store.millisSinceEpoch.toString()]);
-    this.text_61zpoe$(' (@computed property)');
-  }
-  function Clock$render$lambda$lambda_1() {
-    this.text_61zpoe$('The time is ');
-    this.d_16rng9$('code', null, [store.now.toString()]);
-    this.text_61zpoe$(' (@observable property) ');
-  }
-  function Clock$render$lambda$lambda_2() {
-    store.now = new Date();
-  }
   function Clock$render$lambda() {
-    this.d_kj89xv$('h3', void 0, Clock$render$lambda$lambda);
-    this.d_kj89xv$('p', void 0, Clock$render$lambda$lambda_0);
-    this.d_kj89xv$('span', void 0, Clock$render$lambda$lambda_1);
-    this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Clock$render$lambda$lambda_2)), to('className', 'btn btn-default')]), ['Update to now']);
+    store.now = new Date();
   }
   Clock.prototype.render = function () {
     var now = store.now;
-    return d('div', void 0, Clock$render$lambda);
+    return React.createElement('div', null, React.createElement('h3', null, 'Clock'), React.createElement('p', null, 'Milliseconds since epoch: ', React.createElement('code', null, store.millisSinceEpoch.toString()), ' (@computed property)'), React.createElement('span', null, 'The time is ', React.createElement('code', null, store.now.toString()), ' (@observable property) '), h('button', mapOf_0([to('onClick', mobx.action(Clock$render$lambda)), to('className', 'btn btn-default')]), ['Update to now']));
   };
   Clock.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -376,146 +233,126 @@ var kobx = function (_, Kotlin) {
     simpleName: 'Clock',
     baseClasses: []
   };
-  function TabName(name, ordinal, prettyName) {
+  function Tab(name, ordinal, prettyName) {
     Enum.call(this);
     this.prettyName = prettyName;
     this.name$ = name;
     this.ordinal$ = ordinal;
   }
-  function TabName_initFields() {
-    TabName_initFields = function () {
+  function Tab_initFields() {
+    Tab_initFields = function () {
     };
-    TabName$TabA_instance = new TabName('TabA', 0, 'Tab A');
-    TabName$TabB_instance = new TabName('TabB', 1, 'Tab B');
-    TabName$TabC_instance = new TabName('TabC', 2, 'Tab C');
+    Tab$TabA_instance = new Tab('TabA', 0, 'Tab A');
+    Tab$TabB_instance = new Tab('TabB', 1, 'Tab B');
+    Tab$TabC_instance = new Tab('TabC', 2, 'Tab C');
   }
-  var TabName$TabA_instance;
-  function TabName$TabA_getInstance() {
-    TabName_initFields();
-    return TabName$TabA_instance;
+  var Tab$TabA_instance;
+  function Tab$TabA_getInstance() {
+    Tab_initFields();
+    return Tab$TabA_instance;
   }
-  var TabName$TabB_instance;
-  function TabName$TabB_getInstance() {
-    TabName_initFields();
-    return TabName$TabB_instance;
+  var Tab$TabB_instance;
+  function Tab$TabB_getInstance() {
+    Tab_initFields();
+    return Tab$TabB_instance;
   }
-  var TabName$TabC_instance;
-  function TabName$TabC_getInstance() {
-    TabName_initFields();
-    return TabName$TabC_instance;
+  var Tab$TabC_instance;
+  function Tab$TabC_getInstance() {
+    Tab_initFields();
+    return Tab$TabC_instance;
   }
-  TabName.$metadata$ = {
+  Tab.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'TabName',
+    simpleName: 'Tab',
     baseClasses: [Enum]
   };
-  function TabName$values() {
-    return [TabName$TabA_getInstance(), TabName$TabB_getInstance(), TabName$TabC_getInstance()];
+  function Tab$values() {
+    return [Tab$TabA_getInstance(), Tab$TabB_getInstance(), Tab$TabC_getInstance()];
   }
-  TabName.values = TabName$values;
-  function TabName$valueOf(name) {
+  Tab.values = Tab$values;
+  function Tab$valueOf(name) {
     switch (name) {
       case 'TabA':
-        return TabName$TabA_getInstance();
+        return Tab$TabA_getInstance();
       case 'TabB':
-        return TabName$TabB_getInstance();
+        return Tab$TabB_getInstance();
       case 'TabC':
-        return TabName$TabC_getInstance();
-      default:Kotlin.throwISE('No enum constant com.danneu.kobx.TabName.' + name);
+        return Tab$TabC_getInstance();
+      default:Kotlin.throwISE('No enum constant com.danneu.kobx.Tab.' + name);
     }
   }
-  TabName.valueOf_61zpoe$ = TabName$valueOf;
-  function TabA() {
+  Tab.valueOf_61zpoe$ = Tab$valueOf;
+  function TabAContent() {
     React.Component.call(this);
   }
-  TabA.prototype.render = function () {
-    return d_0('div', null, 'TabA Component');
+  TabAContent.prototype.render = function () {
+    return React.createElement('div', null, 'TabA Component');
   };
-  TabA.$metadata$ = {
+  TabAContent.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'TabA',
+    simpleName: 'TabAContent',
     baseClasses: []
   };
-  function TabB() {
+  function TabBContent() {
     React.Component.call(this);
   }
-  TabB.prototype.render = function () {
-    return d_0('div', null, 'TabB Component');
+  TabBContent.prototype.render = function () {
+    return React.createElement('div', null, 'TabB Component');
   };
-  TabB.$metadata$ = {
+  TabBContent.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'TabB',
+    simpleName: 'TabBContent',
     baseClasses: []
   };
-  function TabC() {
+  function TabCContent() {
     React.Component.call(this);
   }
-  TabC.prototype.render = function () {
-    return d_0('div', null, 'TabC Component');
+  TabCContent.prototype.render = function () {
+    return React.createElement('div', null, 'TabC Component');
   };
-  TabC.$metadata$ = {
+  TabCContent.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'TabC',
+    simpleName: 'TabCContent',
     baseClasses: []
   };
   function Tabs() {
     React.Component.call(this);
     mobxReact.observer(this);
-    this.selectedTab = mobx.observable(TabName$TabA_getInstance());
+    this.selectedTab = mobx.observable(Tab$TabA_getInstance());
   }
   function Tabs$renderTab$lambda(this$Tabs, closure$tab) {
     return function () {
       this$Tabs.selectedTab.set(closure$tab);
     };
   }
-  function Tabs$renderTab$lambda_0(closure$tab) {
-    return function () {
-      this.text_61zpoe$(closure$tab.prettyName);
-    };
-  }
-  Tabs.prototype.renderTab_uixppc$ = function (tab) {
-    return d('a', mapOf_0([to('onClick', mobx.action(Tabs$renderTab$lambda(this, tab))), to('href', 'javascript:void(0)')]), Tabs$renderTab$lambda_0(tab));
+  Tabs.prototype.renderTab_d1m69h$ = function (tab) {
+    return h('a', mapOf_0([to('onClick', mobx.action(Tabs$renderTab$lambda(this, tab))), to('href', 'javascript:void(0)')]), [tab.prettyName]);
   };
-  function Tabs$render$lambda$lambda() {
-    this.text_61zpoe$('TabList');
-  }
-  function Tabs$render$lambda$lambda$lambda$lambda(closure$tab, this$Tabs) {
-    return function () {
-      this.d_3d1yi4$(this$Tabs.renderTab_uixppc$(closure$tab));
-    };
-  }
-  function Tabs$render$lambda$lambda_0(this$Tabs) {
-    return function () {
-      var $receiver = TabName$values();
-      var tmp$;
-      for (tmp$ = 0; tmp$ !== $receiver.length; ++tmp$) {
-        var element = $receiver[tmp$];
-        var this$Tabs_0 = this$Tabs;
-        var isSelected = element === this$Tabs_0.selectedTab.get();
-        this.d_kj89xv$('li', mapOf(to('className', isSelected ? 'active' : '')), Tabs$render$lambda$lambda$lambda$lambda(element, this$Tabs_0));
-      }
-    };
-  }
-  function Tabs$render$lambda(this$Tabs) {
-    return function () {
-      var tmp$;
-      this.d_kj89xv$('h3', void 0, Tabs$render$lambda$lambda);
-      this.d_kj89xv$('ul', mapOf(to('className', 'nav nav-tabs')), Tabs$render$lambda$lambda_0(this$Tabs));
-      tmp$ = this$Tabs.selectedTab.get();
-      if (Kotlin.equals(tmp$, TabName$TabA_getInstance()))
-        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabA)));
-      else if (Kotlin.equals(tmp$, TabName$TabB_getInstance()))
-        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabB)));
-      else if (Kotlin.equals(tmp$, TabName$TabC_getInstance()))
-        this.d_nxr5h6$(get_js(Kotlin.getKClass(TabC)));
-    };
-  }
+  Tabs.prototype.renderSelectedTabContent_d1m69h$ = function (selectedTab) {
+    if (Kotlin.equals(selectedTab, Tab$TabA_getInstance()))
+      return React.createElement(get_js(Kotlin.getKClass(TabAContent)));
+    else if (Kotlin.equals(selectedTab, Tab$TabB_getInstance()))
+      return React.createElement(get_js(Kotlin.getKClass(TabBContent)));
+    else if (Kotlin.equals(selectedTab, Tab$TabC_getInstance()))
+      return React.createElement(get_js(Kotlin.getKClass(TabCContent)));
+  };
   Tabs.prototype.render = function () {
-    return d('div', void 0, Tabs$render$lambda(this));
+    var tmp$ = React.createElement('h3', null, 'TabList');
+    var tmp$_0 = mapOf(to('className', 'nav nav-tabs'));
+    var $receiver = Tab$values();
+    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$($receiver.length);
+    var tmp$_1;
+    for (tmp$_1 = 0; tmp$_1 !== $receiver.length; ++tmp$_1) {
+      var item = $receiver[tmp$_1];
+      var tmp$_2 = destination.add_za3rmp$.bind(destination);
+      var isSelected = item === this.selectedTab.get();
+      tmp$_2(h('li', mapOf_0([to('className', isSelected ? 'active' : ''), to('key', item.name)]), [this.renderTab_d1m69h$(item)]));
+    }
+    return React.createElement('div', null, tmp$, h('ul', tmp$_0, [destination]), this.renderSelectedTabContent_d1m69h$(this.selectedTab.get()));
   };
   Tabs.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -530,7 +367,7 @@ var kobx = function (_, Kotlin) {
     this.count = mobx.observable(0);
     var tmp$;
     tmp$ = Counter$Companion_getInstance();
-    this.key = (tmp$.key = tmp$.key + 1, tmp$.key);
+    this.key = (tmp$.key_0 = tmp$.key_0 + 1, tmp$.key_0);
   }
   Counter.prototype.increment = function () {
     this.count.set(this.count.get() + 1);
@@ -538,35 +375,31 @@ var kobx = function (_, Kotlin) {
   Counter.prototype.decrement = function () {
     this.count.set(this.count.get() - 1);
   };
-  function Counter$render$lambda$lambda(this$Counter) {
+  function Counter$render$lambda(this$Counter) {
     return function () {
       this$Counter.decrement();
     };
   }
-  function Counter$render$lambda$lambda_0(this$Counter) {
+  function Counter$render$lambda_0(this$Counter) {
     return function () {
       this$Counter.increment();
-    };
-  }
-  function Counter$render$lambda(this$Counter, closure$value) {
-    return function () {
-      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda$lambda(this$Counter))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['-1']);
-      this.text_61zpoe$(' ' + closure$value.toString() + ' ');
-      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda$lambda_0(this$Counter))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['+1']);
     };
   }
   Counter.prototype.render = function () {
     Kotlin.println('[Counter#render] count = ' + this.count.get() + ', key = ' + this.key);
     var value = this.count.get();
-    return d('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, 'inline-block'))), Counter$render$lambda(this, value));
+    return h('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, 'inline-block'))), [h('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda(this))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['-1']), ' ' + value + ' ', h('button', mapOf_0([to('onClick', mobx.action(Counter$render$lambda_0(this))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['+1'])]);
   };
   Counter.prototype.componentDidMount = function () {
     Kotlin.println('Counter ' + this.key + ' did mount');
   };
   function Counter$Companion() {
     Counter$Companion_instance = this;
-    this.key = 0;
+    this.key_0 = 0;
   }
+  Counter$Companion.prototype.nextKey = function () {
+    return ++Counter$Companion_getInstance().key_0;
+  };
   Counter$Companion.$metadata$ = {
     type: Kotlin.TYPE.OBJECT,
     classIndex: Kotlin.newClassIndex(),
@@ -586,67 +419,76 @@ var kobx = function (_, Kotlin) {
     simpleName: 'Counter',
     baseClasses: []
   };
+  function Counter2$increment(closure$count) {
+    return function () {
+      closure$count.set(closure$count.get() + 1);
+    };
+  }
+  function Counter2$decrement(closure$count) {
+    return function () {
+      closure$count.set(closure$count.get() - 1);
+    };
+  }
+  function Counter2$ObjectLiteral(closure$count_0, closure$decrement_0, closure$increment_0) {
+    this.closure$count_0 = closure$count_0;
+    this.closure$decrement_0 = closure$decrement_0;
+    this.closure$increment_0 = closure$increment_0;
+    React.Component.call(this);
+  }
+  function Counter2$ObjectLiteral$render$lambda(closure$decrement) {
+    return function () {
+      closure$decrement();
+    };
+  }
+  function Counter2$ObjectLiteral$render$lambda_0(closure$increment) {
+    return function () {
+      closure$increment();
+    };
+  }
+  Counter2$ObjectLiteral.prototype.render = function () {
+    Kotlin.println('[Counter2] rendering, ' + this.closure$count_0.get());
+    return h('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, 'inline-block'))), [h('button', mapOf_0([to('onClick', mobx.action(Counter2$ObjectLiteral$render$lambda(this.closure$decrement_0))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['-1']), ' ' + this.closure$count_0.get() + ' ', h('button', mapOf_0([to('onClick', mobx.action(Counter2$ObjectLiteral$render$lambda_0(this.closure$increment_0))), to('className', 'btn btn-xs btn-default'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '50px'))]), ['+1'])]);
+  };
+  Counter2$ObjectLiteral.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    baseClasses: []
+  };
+  function Counter2() {
+    var count = mobx.observable(0);
+    var increment = Counter2$increment(count);
+    var decrement = Counter2$decrement(count);
+    return mobxReact.observer(new Counter2$ObjectLiteral(count, decrement, increment));
+  }
   function CounterList() {
     React.Component.call(this);
     mobxReact.observer(this);
-    var list = listOf_0(new Counter());
+    var list = listOf_0(to(Counter$Companion_getInstance().nextKey(), Counter2()));
     this.counters = mobx.observable(Kotlin.kotlin.collections.copyToArray(list));
   }
   CounterList.prototype.addCounter = function () {
-    this.counters.push(new Counter());
+    this.counters.push(to(Counter$Companion_getInstance().nextKey(), Counter2()));
   };
-  function CounterList$render$lambda$lambda$lambda(this$CounterList) {
-    return function () {
-      this.text_61zpoe$(' Counters: ' + this$CounterList.counters.length);
-    };
-  }
-  function CounterList$render$lambda$lambda(this$CounterList) {
-    return function () {
-      this.text_61zpoe$('CounterList');
-      this.d_kj89xv$('small', void 0, CounterList$render$lambda$lambda$lambda(this$CounterList));
-    };
-  }
-  function CounterList$render$lambda$lambda$lambda_0(this$CounterList) {
+  function CounterList$render$lambda(this$CounterList) {
     return function () {
       this$CounterList.addCounter();
     };
   }
-  function CounterList$render$lambda$lambda_0(this$CounterList) {
+  function CounterList$render$lambda$lambda(this$CounterList, closure$pair) {
     return function () {
-      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda_0(this$CounterList))), to('className', 'btn btn-success')]), ['Add Counter']);
+      this$CounterList.counters.remove(closure$pair);
     };
   }
-  function CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter) {
-    return function () {
-      this$CounterList.counters.remove(closure$counter);
-    };
-  }
-  function CounterList$render$lambda$lambda$lambda$lambda(this$CounterList, closure$counter) {
-    return function () {
-      this.d_16rng9$('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda$lambda$lambda$lambda$lambda(this$CounterList, closure$counter))), to('className', 'btn btn-danger btn-xs'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, '20px'))]), ['Delete']);
-      this.text_61zpoe$(' ');
-      this.d_3d1yi4$(closure$counter.render());
-    };
-  }
-  function CounterList$render$lambda$lambda$lambda_1(this$CounterList) {
-    return function (counter) {
-      return node('li', mapOf_0([to('key', counter.key), to('className', 'list-group-item')]), CounterList$render$lambda$lambda$lambda$lambda(this$CounterList, counter));
-    };
-  }
-  function CounterList$render$lambda$lambda_1(this$CounterList) {
-    return function () {
-      this.ds_9mqe4v$(this$CounterList.counters.map(CounterList$render$lambda$lambda$lambda_1(this$CounterList)));
-    };
-  }
-  function CounterList$render$lambda(this$CounterList) {
-    return function () {
-      this.d_kj89xv$('h3', void 0, CounterList$render$lambda$lambda(this$CounterList));
-      this.d_kj89xv$('p', void 0, CounterList$render$lambda$lambda_0(this$CounterList));
-      this.d_kj89xv$('ul', mapOf(to('className', 'list-group')), CounterList$render$lambda$lambda_1(this$CounterList));
+  function CounterList$render$lambda_0(this$CounterList) {
+    return function (pair) {
+      var tmp$ = pair
+      , key = tmp$.component1()
+      , counter = tmp$.component2();
+      return h('li', mapOf_0([to('key', key), to('className', 'list-group-item')]), [h('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda$lambda(this$CounterList, pair))), to('className', 'btn btn-danger btn-xs'), to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, '20px'))]), ['Delete']), ' ', counter.render()]);
     };
   }
   CounterList.prototype.render = function () {
-    return d('div', void 0, CounterList$render$lambda(this));
+    return React.createElement('div', null, React.createElement('h3', null, 'CounterList', React.createElement('small', null, ' Counters: ' + this.counters.length)), React.createElement('p', null, h('button', mapOf_0([to('onClick', mobx.action(CounterList$render$lambda(this))), to('className', 'btn btn-success')]), ['Add Counter'])), h('ul', mapOf(to('className', 'list-group')), [this.counters.map(CounterList$render$lambda_0(this))]));
   };
   CounterList.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -654,36 +496,35 @@ var kobx = function (_, Kotlin) {
     simpleName: 'CounterList',
     baseClasses: []
   };
+  function Foo() {
+    React.Component.call(this);
+    mobxReact.observer(this);
+  }
+  function Foo$render$lambda() {
+    store.count = store.count + 1;
+  }
+  Foo.prototype.render = function () {
+    return h('button', mapOf(to('onClick', mobx.action(Foo$render$lambda))), [store.count.toString()]);
+  };
+  Foo.prototype.componentDidMount = function () {
+    Kotlin.println('Foo did mount');
+  };
+  Foo.prototype.componentDidUpdate = function () {
+    Kotlin.println('Foo did update');
+  };
+  Foo.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Foo',
+    baseClasses: []
+  };
   function App() {
     React.Component.call(this);
     mobxReact.observer(this);
   }
-  function App$render$lambda$lambda$lambda() {
-    this.text_61zpoe$('Source: ');
-    this.d_16rng9$('a', mapOf(to('href', 'https://github.com/danneu/kobx')), ['github.com/danneu/kobx']);
-    this.text_61zpoe$(' \u2013 A demonstration of ');
-    this.d_16rng9$('a', mapOf_0([to('href', 'https://github.com/mobxjs/mobx'), to('target', '_blank')]), ['MobX']);
-    this.text_61zpoe$(' + ');
-    this.d_16rng9$('a', mapOf_0([to('href', 'https://facebook.github.io/react/'), to('target', '_blank')]), ['React']);
-    this.text_61zpoe$(' components written in Kotlin, compiled to Javascript');
-  }
-  function App$render$lambda$lambda() {
-    this.d_kj89xv$('p', void 0, App$render$lambda$lambda$lambda);
-  }
-  function App$render$lambda() {
-    this.d_kj89xv$('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, '25px', void 0, 'right'))), App$render$lambda$lambda);
-    this.d_kj89xv$('hr');
-    this.d_nxr5h6$(get_js(Kotlin.getKClass(BackgroundPicker)));
-    this.d_kj89xv$('hr');
-    this.d_nxr5h6$(get_js(Kotlin.getKClass(Clock)));
-    this.d_kj89xv$('hr');
-    this.d_nxr5h6$(get_js(Kotlin.getKClass(Tabs)));
-    this.d_kj89xv$('hr');
-    this.d_nxr5h6$(get_js(Kotlin.getKClass(CounterList)));
-  }
   App.prototype.render = function () {
     var style = new Css(store.backgroundColor, void 0, void 0, void 0, void 0, void 0, void 0, void 0, '20px');
-    return d('div', mapOf(to('style', style)), App$render$lambda);
+    return h('div', mapOf(to('style', style)), [h('div', mapOf(to('style', new Css(void 0, void 0, void 0, void 0, void 0, void 0, void 0, '25px', void 0, 'right'))), [React.createElement('p', null, 'Source: ', h('a', mapOf(to('href', 'https://github.com/danneu/kobx')), ['github.com/danneu/kobx']), ' \u2013 A demonstration of ', h('a', mapOf_0([to('href', 'https://github.com/mobxjs/mobx'), to('target', '_blank')]), ['MobX']), ' + ', h('a', mapOf_0([to('href', 'https://facebook.github.io/react/'), to('target', '_blank')]), ['React']), ' components written in Kotlin, compiled to Javascript')]), React.createElement('hr'), React.createElement(get_js(Kotlin.getKClass(BackgroundPicker))), React.createElement('hr'), React.createElement(get_js(Kotlin.getKClass(Clock))), React.createElement('hr'), React.createElement(get_js(Kotlin.getKClass(Tabs))), React.createElement('hr'), React.createElement(get_js(Kotlin.getKClass(CounterList))), React.createElement('hr'), React.createElement(get_js(Kotlin.getKClass(Foo))), React.createElement(get_js(Kotlin.getKClass(Foo))), React.createElement(get_js(Kotlin.getKClass(Foo)))]);
   };
   App.$metadata$ = {
     type: Kotlin.TYPE.CLASS,
@@ -699,37 +540,43 @@ var kobx = function (_, Kotlin) {
     window.setInterval(mobx.action(main$lambda), 1000);
     ReactDOM.render(React.createElement(get_js(Kotlin.getKClass(App))), (tmp$ = document.querySelector('#root')) != null ? tmp$ : Kotlin.throwNPE());
   }
-  var observable = Kotlin.defineInlineFunction('kobx.com.danneu.kobx.mobx.observable_rtpmmf$', function (observable$A_0, isA, list) {
-    return mobx.observable(Kotlin.kotlin.collections.copyToArray(list));
-  });
-  function Observable() {
+  function objectOf$ObjectLiteral() {
   }
-  Observable.prototype.activate = function () {
-    {
-      var self = this;
-      var obj = Object.getOwnPropertyDescriptors(this);
-      Object.keys(obj).forEach(function (key) {
-        var mapping = {};
-        mapping[key] = obj[key].value;
-        console.log('key is: "', key, '" , value is:', obj[key].value, 'mapping is', mapping);
-        mobx.extendObservable(self, mapping);
-      });
+  objectOf$ObjectLiteral.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
+    classIndex: Kotlin.newClassIndex(),
+    baseClasses: []
+  };
+  function objectOf(pairs) {
+    var obj = new objectOf$ObjectLiteral();
+    var tmp$;
+    for (tmp$ = 0; tmp$ !== pairs.length; ++tmp$) {
+      var element = pairs[tmp$];
+      var k = element.component1()
+      , v = element.component2();
+      obj[k] = v;
     }
-  };
-  Observable.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
-    classIndex: Kotlin.newClassIndex(),
-    simpleName: 'Observable',
-    baseClasses: []
-  };
-  function ReactElement() {
+    return obj;
   }
-  ReactElement.$metadata$ = {
-    type: Kotlin.TYPE.TRAIT,
+  function objectOf$ObjectLiteral_0() {
+  }
+  objectOf$ObjectLiteral_0.$metadata$ = {
+    type: Kotlin.TYPE.CLASS,
     classIndex: Kotlin.newClassIndex(),
-    simpleName: 'ReactElement',
     baseClasses: []
   };
+  function objectOf_0(map_1) {
+    var obj = new objectOf$ObjectLiteral_0();
+    var tmp$;
+    tmp$ = map_1.entries.iterator();
+    while (tmp$.hasNext()) {
+      var element = tmp$.next();
+      var k = element.key;
+      var v = element.value;
+      obj[k] = v;
+    }
+    return obj;
+  }
   function toJsObject$ObjectLiteral() {
   }
   toJsObject$ObjectLiteral.$metadata$ = {
@@ -754,6 +601,66 @@ var kobx = function (_, Kotlin) {
     }
     return obj;
   }
+  var observable = Kotlin.defineInlineFunction('kobx.com.danneu.kobx.mobx.observable_rtpmmf$', function (observable$A_0, isA, list) {
+    return mobx.observable(Kotlin.kotlin.collections.copyToArray(list));
+  });
+  function Observable() {
+  }
+  Observable.prototype.activate = function () {
+    var props = Object.getOwnPropertyDescriptors(this);
+    var $receiver = Object.keys(props);
+    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$();
+    var tmp$;
+    for (tmp$ = 0; tmp$ !== $receiver.length; ++tmp$) {
+      var element = $receiver[tmp$];
+      if (element.charAt(0) !== '$') {
+        destination.add_za3rmp$(element);
+      }
+    }
+    var tmp$_0;
+    tmp$_0 = destination.iterator();
+    while (tmp$_0.hasNext()) {
+      var element_0 = tmp$_0.next();
+      var value = props[element_0].value;
+      var mapping = objectOf([to(element_0, value)]);
+      Kotlin.println('key = ' + element_0 + ', value = ' + value + ', mapping = ' + JSON.stringify(mapping) + ')');
+      mobx.extendObservable(this, mapping);
+    }
+  };
+  Observable.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'Observable',
+    baseClasses: []
+  };
+  function VNode() {
+  }
+  VNode.$metadata$ = {
+    type: Kotlin.TYPE.TRAIT,
+    classIndex: Kotlin.newClassIndex(),
+    simpleName: 'VNode',
+    baseClasses: []
+  };
+  function h(nodeName, attrs, kids) {
+    var tmp$ = React.createElement;
+    var tmp$_0 = [nodeName, toJsObject(attrs)];
+    var tmp$_1 = tmp$_0.concat.bind(tmp$_0);
+    var destination = Kotlin.kotlin.collections.ArrayList_init_za3lpa$(kids.length);
+    var tmp$_2;
+    for (tmp$_2 = 0; tmp$_2 !== kids.length; ++tmp$_2) {
+      var item = kids[tmp$_2];
+      var tmp$_3 = destination.add_za3rmp$.bind(destination);
+      var transform$result;
+      if (Kotlin.isType(item, List)) {
+        transform$result = Kotlin.kotlin.collections.copyToArray(item);
+      }
+       else {
+        transform$result = item;
+      }
+      tmp$_3(transform$result);
+    }
+    return tmp$.apply(null, tmp$_1(Kotlin.kotlin.collections.copyToArray(destination)));
+  }
   Store.prototype.activate = Observable.prototype.activate;
   Object.defineProperty(Cursor, 'auto', {
     get: Cursor$auto_getInstance
@@ -772,13 +679,6 @@ var kobx = function (_, Kotlin) {
   var package$kobx = package$danneu.kobx || (package$danneu.kobx = {});
   package$kobx.Cursor = Cursor;
   package$kobx.Css = Css;
-  package$kobx.D = D;
-  package$kobx.d_kj89xv$ = d;
-  package$kobx.node_kj89xv$ = node;
-  package$kobx.d_oicq7u$ = d_0;
-  package$kobx.node_oicq7u$ = node_0;
-  package$kobx.node_h93uci$ = node_1;
-  package$kobx.node_gm0inq$ = node_2;
   package$kobx.Store = Store;
   Object.defineProperty(package$kobx, 'store', {
     get: function () {
@@ -790,33 +690,39 @@ var kobx = function (_, Kotlin) {
   });
   package$kobx.BackgroundPicker = BackgroundPicker;
   package$kobx.Clock = Clock;
-  Object.defineProperty(TabName, 'TabA', {
-    get: TabName$TabA_getInstance
+  Object.defineProperty(Tab, 'TabA', {
+    get: Tab$TabA_getInstance
   });
-  Object.defineProperty(TabName, 'TabB', {
-    get: TabName$TabB_getInstance
+  Object.defineProperty(Tab, 'TabB', {
+    get: Tab$TabB_getInstance
   });
-  Object.defineProperty(TabName, 'TabC', {
-    get: TabName$TabC_getInstance
+  Object.defineProperty(Tab, 'TabC', {
+    get: Tab$TabC_getInstance
   });
-  package$kobx.TabName = TabName;
-  package$kobx.TabA = TabA;
-  package$kobx.TabB = TabB;
-  package$kobx.TabC = TabC;
+  package$kobx.Tab = Tab;
+  package$kobx.TabAContent = TabAContent;
+  package$kobx.TabBContent = TabBContent;
+  package$kobx.TabCContent = TabCContent;
   package$kobx.Tabs = Tabs;
   Object.defineProperty(Counter, 'Companion', {
     get: Counter$Companion_getInstance
   });
   package$kobx.Counter = Counter;
+  package$kobx.Counter2 = Counter2;
   package$kobx.CounterList = CounterList;
+  package$kobx.Foo = Foo;
   package$kobx.App = App;
   package$kobx.main_kand9s$ = main;
+  var package$js = package$kobx.js || (package$kobx.js = {});
+  package$js.objectOf_eoa9s7$ = objectOf;
+  package$js.objectOf_9qgf6b$ = objectOf_0;
+  package$js.toJsObject_efxzmg$ = toJsObject;
   var package$mobx = package$kobx.mobx || (package$kobx.mobx = {});
   package$mobx.observable_rtpmmf$ = observable;
   package$mobx.Observable = Observable;
   var package$react = package$kobx.react || (package$kobx.react = {});
-  package$react.ReactElement = ReactElement;
-  package$react.toJsObject_efxzmg$ = toJsObject;
+  package$react.VNode = VNode;
+  package$react.h_hseq2$ = h;
   store = new Store();
   Kotlin.defineModule('kobx', _);
   main([]);

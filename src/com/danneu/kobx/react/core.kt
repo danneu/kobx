@@ -1,25 +1,37 @@
 package com.danneu.kobx.react
 
-interface ReactElement
+import com.danneu.kobx.js.Object
+import com.danneu.kobx.js.toJsObject
+import org.w3c.dom.Element
 
-external class Object
+interface VNode
 
-fun Map<*, *>.toJsObject(): Object {
-    val obj: dynamic = object {}
-    this.entries.forEach { (k, v) ->
-        if (v is Map<*, *>) {
-            obj[k] = v.toJsObject()
-        } else {
-            obj[k] = v
+@JsName("React.Component")
+external abstract class Component {
+    abstract fun render(): VNode
+}
+
+@JsName("ReactDOM.render")
+external fun render(vNode: VNode, domNode: Element)
+
+
+@JsName("React.createElement")
+external fun h(nodeName: String, attrs: Object? = null, vararg kids: Any?): VNode
+@JsName("React.createElement")
+external fun h(jsClass: JsClass<*>, attrs: Object? = null, vararg kids: Any?): VNode
+
+fun h(nodeName: String, attrs: Map<String, Any>, vararg kids: Any?): VNode {
+    // A List child will throw a runtime error, so preprocess lists into arrays before passing them on
+    // to the external functions.
+    return h(nodeName, attrs.toJsObject(), *kids.map { kid ->
+        when (kid) {
+            is List<*> ->
+                kid.toTypedArray()
+            else ->
+                kid
         }
-    }
-    return obj
+    }.toTypedArray())
 }
 
-@JsName("React")
-external object React {
-    fun createElement(component: Component, attrs: Object? = null, vararg kids: Any): ReactElement
-    fun createElement(element: ReactElement, attrs: Object? = null, vararg kids: Any): ReactElement
-    fun createElement(tag: String, attrs: Object? = null, vararg kids: dynamic): ReactElement
-    fun createElement(jsclass: JsClass<*>, attrs: Object? = null, vararg kids: Any): ReactElement
-}
+
+
